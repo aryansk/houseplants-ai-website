@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fertilizer Calculator · HousePlants</title>
+<link rel="icon" href="/assets/app-icon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+<div id="nav"></div>
+
+<main style="max-width:48rem;margin:0 auto;padding:8rem 1.5rem 4rem">
+  <header class="reveal">
+    <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Tool</p>
+    <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">Fertilizer calculator</h1>
+    <p style="color:rgba(247,243,234,.7);margin-top:1rem">NPK-aware dosing for liquid, granular, or slow-release feeds.</p>
+  </header>
+
+  <form id="form" class="glass reveal" style="margin-top:2rem;padding:1.5rem;border-radius:1.5rem;display:grid;gap:1rem">
+    <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Type</span>
+        <select id="type" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)">
+          <option value="liquid">Liquid</option>
+          <option value="granular">Granular</option>
+          <option value="slow">Slow-release pellets</option>
+        </select>
+      </label>
+      <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">NPK ratio</span>
+        <input id="npk" type="text" value="10-10-10" placeholder="e.g., 20-10-20" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)"/>
+      </label>
+      <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Pot size (cm)</span>
+        <input id="pot" type="number" value="15" min="5" max="60" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)"/>
+      </label>
+      <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Growth stage</span>
+        <select id="stage" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)">
+          <option value="active" selected>Active growth</option>
+          <option value="slow">Slow / dormant</option>
+          <option value="flowering">Flowering / fruiting</option>
+        </select>
+      </label>
+    </div>
+  </form>
+
+  <section id="out" style="margin-top:2rem"></section>
+</main>
+
+<div id="footer"></div>
+<script src="/assets/site.js"></script>
+<script>
+function calc(){
+  const type = document.getElementById('type').value;
+  const npk = document.getElementById('npk').value.split('-').map(n=>parseFloat(n)||0);
+  const pot = +document.getElementById('pot').value || 15;
+  const stage = document.getElementById('stage').value;
+
+  const stageMod = { active:1.0, slow:0.4, flowering:1.2 }[stage];
+  const litres = Math.max(0.25, Math.round(((Math.PI * (pot/2)**2 * pot) / 1000) * 10) / 10); // pot volume in L
+
+  // Heuristics
+  let result = '';
+  if (type === 'liquid') {
+    // Standard dilution: 1 ml per L at 10-10-10 baseline, scaled by N
+    const N = npk[0] || 10;
+    const baseMlPerL = (10 / N) * 1.0 * stageMod; // weaker with higher N
+    const totalMl = (baseMlPerL * litres).toFixed(2);
+    const freq = stage === 'active' ? 'every 2 weeks' : stage === 'flowering' ? 'every 10 days' : 'monthly';
+    result = `
+      <p style="font-weight:800;font-size:2rem" class="font-display">Mix <span class="gradient-text">${baseMlPerL.toFixed(2)} ml</span> per liter</p>
+      <p style="color:rgba(247,243,234,.7);margin-top:.5rem">For this pot (~${litres} L of mix), use about <strong>${totalMl} ml</strong> of concentrate.</p>
+      <p style="margin-top:.5rem">Apply <strong>${freq}</strong>. Always water plain first if soil is bone dry, then apply diluted feed.</p>`;
+  } else if (type === 'granular') {
+    const grams = Math.round(litres * 2 * stageMod * 10) / 10;
+    const freq = stage === 'active' ? 'every 4–6 weeks' : 'every 8 weeks';
+    result = `
+      <p style="font-weight:800;font-size:2rem" class="font-display">Top-dress <span class="gradient-text">${grams} g</span></p>
+      <p style="color:rgba(247,243,234,.7);margin-top:.5rem">Sprinkle evenly on the soil surface, then water thoroughly to activate.</p>
+      <p style="margin-top:.5rem">Re-apply <strong>${freq}</strong> during the growing season.</p>`;
+  } else {
+    const pellets = Math.round(litres * 8 * stageMod);
+    result = `
+      <p style="font-weight:800;font-size:2rem" class="font-display">~<span class="gradient-text">${pellets} pellets</span></p>
+      <p style="color:rgba(247,243,234,.7);margin-top:.5rem">Press into the top 1 cm of soil. Slow-release coatings break down over 3–4 months.</p>
+      <p style="margin-top:.5rem">Re-dose once per quarter during active growth.</p>`;
+  }
+
+  document.getElementById('out').innerHTML = `
+    <div class="glass" style="padding:1.5rem;border-radius:1.5rem">
+      <p style="font-size:.75rem;color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.15em">Your dose</p>
+      ${result}
+      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:rgba(255,200,80,.08);border:1px solid rgba(255,200,80,.25)">
+        <p style="font-size:.8rem;font-weight:700;color:#ffcc66">Caution</p>
+        <p style="margin-top:.25rem;font-size:.9rem;color:rgba(247,243,234,.85)">Under-fertilizing is almost always safer than over-fertilizing. When in doubt, halve the dose.</p>
+      </div>
+    </div>
+  `;
+}
+document.getElementById('form').addEventListener('input', calc);
+calc();
+</script>
+</body>
+</html>

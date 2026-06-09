@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Plant Doctor · HousePlants</title>
+<link rel="icon" href="/assets/app-icon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+<div id="nav"></div>
+
+<main style="max-width:48rem;margin:0 auto;padding:8rem 1.5rem 4rem">
+  <header class="reveal">
+    <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Plant Doctor</p>
+    <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">What's wrong with my plant?</h1>
+    <p style="color:rgba(247,243,234,.7);margin-top:1rem">Pick the symptoms you see. We'll map them to the most likely causes and treatments.</p>
+  </header>
+
+  <section class="glass reveal" style="margin-top:2rem;padding:1.5rem;border-radius:1.5rem">
+    <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em">Symptoms</p>
+    <div id="symptoms" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+
+    <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em;margin-top:1.5rem">Recent care</p>
+    <div id="care" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+
+    <div style="margin-top:1.5rem;display:flex;gap:.75rem">
+      <button id="diagnose" class="btn btn-primary">🩺 Diagnose</button>
+      <button id="reset" class="btn btn-ghost">Reset</button>
+    </div>
+  </section>
+
+  <section id="results" style="margin-top:2rem"></section>
+</main>
+
+<div id="footer"></div>
+<script src="/assets/site.js"></script>
+<script>
+// Symptom & care signals → causes
+const SYMPTOMS = [
+  { id:'yellow_leaves', label:'Yellow leaves', weights:{overwatering:3, nutrient_def:2, low_light:1, root_rot:2, natural_aging:1}},
+  { id:'brown_tips', label:'Brown leaf tips', weights:{low_humidity:3, tap_water:2, underwatering:2, fertilizer_burn:2}},
+  { id:'drooping', label:'Drooping / wilting', weights:{underwatering:3, overwatering:2, root_rot:2, temperature_shock:1}},
+  { id:'leaf_drop', label:'Leaves falling off', weights:{temperature_shock:3, overwatering:2, underwatering:1, low_light:1}},
+  { id:'spots', label:'Spots on leaves', weights:{fungal_disease:3, bacterial_disease:2, sunburn:1, pest_damage:2}},
+  { id:'white_powder', label:'White powdery coating', weights:{powdery_mildew:4}},
+  { id:'webbing', label:'Webbing under leaves', weights:{spider_mites:5}},
+  { id:'sticky_residue', label:'Sticky residue', weights:{aphids:3, scale:3, mealybugs:3}},
+  { id:'leggy', label:'Leggy / stretching', weights:{low_light:4}},
+  { id:'curling', label:'Curling leaves', weights:{underwatering:2, pest_damage:2, temperature_shock:1}},
+  { id:'mushy_stem', label:'Mushy stem or base', weights:{root_rot:4, overwatering:3}},
+  { id:'pale_new_growth', label:'Pale new growth', weights:{nutrient_def:3, low_light:2}}
+];
+const CARE = [
+  { id:'watered_recently', label:'Watered in last 3 days', weights:{overwatering:2}},
+  { id:'long_no_water', label:'Not watered in 2+ weeks', weights:{underwatering:3}},
+  { id:'low_window', label:'Far from any window', weights:{low_light:2, leggy:1}},
+  { id:'south_window', label:'Direct south-facing sun', weights:{sunburn:2}},
+  { id:'dry_air', label:'Dry / heated air', weights:{low_humidity:2, spider_mites:1}},
+  { id:'cold_draft', label:'Near a cold draft', weights:{temperature_shock:2}},
+  { id:'recent_repot', label:'Repotted in last month', weights:{transplant_shock:3}},
+  { id:'recent_fert', label:'Fertilized recently', weights:{fertilizer_burn:2}}
+];
+
+const CAUSES = {
+  overwatering:{title:'Overwatering', desc:'Roots sit in saturated soil and suffocate. The single most common houseplant problem.', fix:'Let the top 1–2 inches of soil dry fully. Empty saucers. Improve drainage; consider repotting if soil smells sour.'},
+  underwatering:{title:'Underwatering', desc:'Soil dried out long enough that fine roots died back.', fix:'Soak the rootball in a sink for 15 minutes, then drain. Resume regular checks — finger an inch in.'},
+  root_rot:{title:'Root rot', desc:'Anaerobic bacteria & fungi attack waterlogged roots. Mushy black roots, sour smell.', fix:'Unpot. Cut away brown/mushy roots with sterilized scissors. Repot in fresh, well-draining mix. Hold water until new growth.'},
+  low_humidity:{title:'Low humidity', desc:'Indoor air below 40% RH dehydrates tropical species at the leaf tips.', fix:'Group plants, run a humidifier, or use a pebble tray. Misting helps briefly but not durably.'},
+  tap_water:{title:'Hard or chlorinated water', desc:'Salt and fluoride accumulate, burning tips of sensitive species (Calathea, Dracaena, Spider Plant).', fix:'Use rain or filtered water, or let tap sit uncovered for 24 hours.'},
+  fertilizer_burn:{title:'Fertilizer burn', desc:'Excess salts in soil pull moisture out of roots.', fix:'Flush pot with 3× its volume of plain water. Pause feeding 4–6 weeks.'},
+  nutrient_def:{title:'Nutrient deficiency', desc:'Old potting mix leaching nutrients — most often nitrogen, magnesium, or iron.', fix:'Begin a dilute balanced liquid feed (¼ strength) every 2 weeks during active growth.'},
+  low_light:{title:'Low light', desc:'Photosynthesis below maintenance threshold — plant cannibalizes its lower leaves.', fix:'Move closer to a bright window or add a grow light (~14h/day).'},
+  sunburn:{title:'Sunburn', desc:'Direct mid-day sun scorched tissue.', fix:'Move back from the window or use a sheer curtain.'},
+  temperature_shock:{title:'Temperature shock', desc:'Sudden swing below 15 °C or near AC/heater.', fix:'Stabilize between 18–27 °C. Move away from drafts and exterior glass at night.'},
+  transplant_shock:{title:'Transplant shock', desc:'Roots disturbed during repotting need 2–4 weeks to settle.', fix:'Keep humidity high, hold off fertilizer, keep water steady.'},
+  powdery_mildew:{title:'Powdery mildew', desc:'Fungal infection thriving in still, humid air.', fix:'Improve airflow. Treat with 1:10 milk-water spray or potassium-bicarbonate solution weekly.'},
+  fungal_disease:{title:'Fungal leaf disease', desc:'Brown/black spots with yellow halos, often spreading.', fix:'Remove affected leaves, sterilize shears, reduce overhead watering, apply copper or neem-based fungicide.'},
+  bacterial_disease:{title:'Bacterial leaf spot', desc:'Wet-looking, sometimes smelly lesions.', fix:'Quarantine plant. Trim affected leaves. Avoid wetting foliage; bacteria spreads with water droplets.'},
+  spider_mites:{title:'Spider mites', desc:'Tiny sap-sucking arachnids; thrive in dry air. Webbing is diagnostic.', fix:'Shower the plant thoroughly. Apply neem oil or insecticidal soap every 5 days for 3 cycles.'},
+  aphids:{title:'Aphids', desc:'Soft green/black insects clustering on new growth.', fix:'Blast with water. Apply insecticidal soap weekly until clear.'},
+  scale:{title:'Scale insects', desc:'Brown immobile bumps on stems/leaf undersides.', fix:'Scrape off with a thumbnail. Treat residual with horticultural oil weekly.'},
+  mealybugs:{title:'Mealybugs', desc:'White cottony tufts in leaf axils.', fix:'Dab each one with 70% isopropyl alcohol on a cotton swab. Repeat weekly.'},
+  pest_damage:{title:'Generic pest damage', desc:'Check leaf undersides closely for tiny insects, eggs, or webbing.', fix:'Identify the pest first — different treatments per type. See related pest entries.'},
+  natural_aging:{title:'Natural leaf aging', desc:'Older lower leaves yellow and drop as the plant matures. Not a problem.', fix:'No action needed if only one or two old leaves are affected at a time.'},
+  leggy:{title:'Leggy growth', desc:'Long internodes, sparse leaves — reaching for light.', fix:'Move to brighter location. Prune back to encourage bushier regrowth.'}
+};
+
+function renderToggles(host, items, selected){
+  document.getElementById(host).innerHTML = items.map(s=>`
+    <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+      <input type="checkbox" data-id="${s.id}" data-set="${host}" style="accent-color:var(--leaf-400)" ${selected.has(s.id)?'checked':''} />
+      <span style="font-size:.875rem">${s.label}</span>
+    </label>`).join('');
+}
+
+const selSymp = new Set(), selCare = new Set();
+renderToggles('symptoms', SYMPTOMS, selSymp);
+renderToggles('care', CARE, selCare);
+
+document.body.addEventListener('change', e=>{
+  const cb = e.target;
+  if (cb.matches('input[type=checkbox][data-set]')){
+    const set = cb.dataset.set === 'symptoms' ? selSymp : selCare;
+    cb.checked ? set.add(cb.dataset.id) : set.delete(cb.dataset.id);
+  }
+});
+
+document.getElementById('reset').addEventListener('click', ()=>{
+  selSymp.clear(); selCare.clear();
+  renderToggles('symptoms', SYMPTOMS, selSymp);
+  renderToggles('care', CARE, selCare);
+  document.getElementById('results').innerHTML = '';
+});
+
+document.getElementById('diagnose').addEventListener('click', ()=>{
+  const scores = {};
+  const all = [...SYMPTOMS, ...CARE];
+  for (const item of all){
+    const active = (item === SYMPTOMS.find(x=>x.id===item.id) ? selSymp : selCare).has(item.id);
+    if (!active) continue;
+    for (const [cause, w] of Object.entries(item.weights)){
+      scores[cause] = (scores[cause]||0) + w;
+    }
+  }
+  const ranked = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const total = ranked.reduce((s,[,v])=>s+v,0);
+  const out = document.getElementById('results');
+  if (!ranked.length){
+    out.innerHTML = `<div class="glass" style="padding:1.5rem;border-radius:1.25rem;color:rgba(247,243,234,.7)">Select at least one symptom to diagnose.</div>`;
+    return;
+  }
+  out.innerHTML = `
+    <h2 class="font-display" style="font-size:2rem;font-weight:900">Most likely causes</h2>
+    <div style="margin-top:1rem;display:grid;gap:1rem">
+      ${ranked.slice(0,5).map(([id,score])=>{
+        const c = CAUSES[id] || {title:id, desc:'', fix:''};
+        const pct = Math.round((score/total)*100);
+        return `<div class="glass" style="padding:1.25rem;border-radius:1.25rem">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem">
+            <h3 style="font-weight:800;font-size:1.1rem">${c.title}</h3>
+            <span style="color:var(--leaf-300);font-weight:700">${pct}%</span>
+          </div>
+          <div style="height:6px;border-radius:9999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:.5rem"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--leaf-400),var(--leaf-600))"></div></div>
+          <p style="color:rgba(247,243,234,.75);margin-top:.75rem;font-size:.9rem">${c.desc}</p>
+          <p style="color:var(--leaf-200);margin-top:.5rem;font-size:.9rem"><strong>Fix:</strong> ${c.fix}</p>
+        </div>`;
+      }).join('')}
+    </div>
+    <p style="margin-top:1rem;color:rgba(247,243,234,.5);font-size:.8rem">This is a heuristic guide. For persistent issues, consult a horticulturist.</p>
+  `;
+  out.scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
