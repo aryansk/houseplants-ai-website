@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Plant Doctor · HousePlants</title>
+<meta name="description" content="Use the HousePlants diagnostic wizard to check symptoms like yellow leaves, drooping, brown tips, or pests, and get probabilistic care treatments instantly." />
 <link rel="icon" href="/assets/app-icon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
@@ -20,10 +21,94 @@
 
   <section class="glass reveal" style="margin-top:2rem;padding:1.5rem;border-radius:1.5rem">
     <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em">Symptoms</p>
-    <div id="symptoms" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+    <div id="symptoms" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+      <!-- Pre-rendered for SEO / First-paint -->
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="yellow_leaves" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Yellow leaves</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="brown_tips" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Brown leaf tips</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="drooping" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Drooping / wilting</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="leaf_drop" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Leaves falling off</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="spots" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Spots on leaves</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="white_powder" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">White powdery coating</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="webbing" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Webbing under leaves</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="sticky_residue" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Sticky residue</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="leggy" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Leggy / stretching</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="curling" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Curling leaves</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="mushy_stem" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Mushy stem or base</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="pale_new_growth" data-set="symptoms" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Pale new growth</span>
+      </label>
+    </div>
 
     <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em;margin-top:1.5rem">Recent care</p>
-    <div id="care" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))"></div>
+    <div id="care" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+      <!-- Pre-rendered for SEO / First-paint -->
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="watered_recently" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Watered in last 3 days</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="long_no_water" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Not watered in 2+ weeks</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="low_window" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Far from any window</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="south_window" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Direct south-facing sun</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="dry_air" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Dry / heated air</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="cold_draft" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Near a cold draft</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="recent_repot" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Repotted in last month</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:.5rem;background:rgba(0,0,0,.25);padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(247,243,234,.08)">
+        <input type="checkbox" data-id="recent_fert" data-set="care" style="accent-color:var(--leaf-400)" />
+        <span style="font-size:.875rem">Fertilized recently</span>
+      </label>
+    </div>
 
     <div style="margin-top:1.5rem;display:flex;gap:.75rem">
       <button id="diagnose" class="btn btn-primary">🩺 Diagnose</button>

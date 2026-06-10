@@ -4,6 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Water Calculator · HousePlants</title>
+<meta name="description" content="Calculate the optimal watering schedule and target volume for your houseplants based on species type, pot size, light levels, and current season." />
 <link rel="icon" href="/assets/app-icon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
@@ -54,7 +55,18 @@
     </div>
   </form>
 
-  <section id="out" style="margin-top:2rem"></section>
+  <section id="out" style="margin-top:2rem">
+    <!-- Pre-rendered for SEO / First-paint -->
+    <div class="glass" style="padding:1.5rem;border-radius:1.5rem">
+      <p style="font-size:.75rem;color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.15em">Monstera's plan (Example)</p>
+      <h2 class="font-display" style="font-size:2.5rem;font-weight:900;margin:.25rem 0">Every <span class="gradient-text">6 days</span></h2>
+      <p style="color:rgba(247,243,234,.7)">~265 ml per watering. Always check the top inch of soil before pouring — that overrides any schedule.</p>
+      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:rgba(92,183,113,.1);border:1px solid rgba(92,183,113,.3)">
+        <p style="font-size:.8rem;font-weight:700;color:var(--leaf-300)">Pro tip</p>
+        <p style="margin-top:.25rem;font-size:.9rem">Water until it runs from the drainage hole, then empty the saucer after 15 minutes. Standing water is the #1 cause of root rot.</p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <div id="footer"></div>

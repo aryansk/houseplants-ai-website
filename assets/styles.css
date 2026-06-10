@@ -1,30 +1,301 @@
-/* HousePlants shared styles */
-:root{
-  --leaf-50:#f1faf2;--leaf-100:#dff3e1;--leaf-200:#bce6c2;--leaf-300:#8fd29c;
-  --leaf-400:#5cb771;--leaf-500:#379a52;--leaf-600:#267c40;--leaf-700:#1f6235;
-  --leaf-800:#1b4e2c;--leaf-900:#0f2a18;--cream:#f7f3ea;
+/* HousePlants shared styles - Revamped Brand Palette */
+:root {
+  /* Logo color palette */
+  --brand-green: #00b050;
+  --brand-blue: #0047e0;
+  --brand-red: #ff1a1a;
+  --brand-yellow: #ffd000;
+  --brand-orange: #ff8800;
+  --brand-pink: #ff8ea0;
+  --brand-dark: #132217;
+
+  /* Theme variables */
+  --body-bg: #fdfcf9;
+  --body-text: #132217;
+  --cream: #fdfcf9;
+  
+  /* HSL adapted leaf colors for light/vibrant theme */
+  --leaf-50: #f4fcf6;
+  --leaf-100: #e2f9e9;
+  --leaf-200: #c1f3cf;
+  --leaf-300: #00b050; /* Brand green for highlighted elements */
+  --leaf-400: #0047e0; /* Brand blue for primary elements */
+  --leaf-500: #008f44;
+  --leaf-600: #007537;
+  --leaf-700: #005a2a;
+  --leaf-800: #e2f9e9; /* Light mint backdrop for plant thumbs */
+  --leaf-900: #132217; /* Deep woodland green/charcoal */
 }
-html{scroll-behavior:smooth}
-body{background:var(--leaf-900);color:var(--cream);font-family:Inter,ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;margin:0}
-.font-display{font-family:"Fraunces",serif}
-.grain{background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:3px 3px}
-.glass{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px)}
-.chip{backdrop-filter:blur(10px);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-.gradient-text{background:linear-gradient(120deg,#8fd29c,#dff3e1 30%,#5cb771 70%,#bce6c2);-webkit-background-clip:text;background-clip:text;color:transparent}
-.ring-glow{box-shadow:0 30px 80px -20px rgba(55,154,82,.5),0 0 0 1px rgba(255,255,255,.06) inset}
-.blob{filter:blur(80px);opacity:.6}
-.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-.tilt{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-.tilt:hover{transform:perspective(1200px) rotateY(-6deg) rotateX(4deg) scale(1.02)}
-.plant-thumb{width:100%;aspect-ratio:1;background:var(--leaf-800);border-radius:1rem;display:grid;place-items:center;font-size:2.5rem;overflow:hidden}
-.plant-thumb img{width:100%;height:100%;object-fit:cover}
-.btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;padding:.75rem 1.5rem;font-weight:700;text-decoration:none;transition:all .2s}
-.btn-primary{background:var(--leaf-400);color:var(--leaf-900)}
-.btn-primary:hover{background:var(--leaf-300)}
-.btn-ghost{border:1px solid rgba(247,243,234,.2);color:var(--cream)}
-.btn-ghost:hover{border-color:rgba(247,243,234,.4)}
-.tag{display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .6rem;border-radius:9999px;font-size:.7rem;font-weight:700;background:var(--leaf-800);color:var(--leaf-200)}
-.tag.toxic{background:#7a1f1f;color:#fecaca}
-.tag.safe{background:#1f4d3a;color:#bce6c2}
-input,select,textarea{font:inherit}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--body-bg);
+  color: var(--body-text);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.font-display {
+  font-family: "Fraunces", serif;
+}
+
+.grain {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+/* Glassmorphism card overlays - Overrides inline styles */
+.glass {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 30px rgba(19, 34, 23, 0.04) !important;
+  color: var(--body-text) !important;
+}
+
+.chip {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--body-text);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--brand-blue), var(--brand-green) 40%, var(--brand-orange) 80%, var(--brand-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ring-glow {
+  box-shadow: 0 30px 80px -20px rgba(0, 71, 224, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06) inset;
+}
+
+.blob {
+  filter: blur(80px);
+  opacity: 0.25;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s cubic-bezier(.2, .7, .2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tilt cards with logo color accents */
+.tilt {
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1), border-color .3s, box-shadow .3s;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: var(--body-text) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+}
+
+.tilt:hover {
+  transform: perspective(1200px) rotateY(-6deg) rotateX(4deg) scale(1.02);
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 15px 40px rgba(0, 71, 224, 0.08) !important;
+}
+
+/* Plant Thumbnail backgrounds */
+.plant-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--leaf-800) !important;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  overflow: hidden;
+}
+
+.plant-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Standardized brand buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 9999px;
+  padding: .75rem 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background: var(--brand-green) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 176, 80, 0.2);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(19, 34, 23, 0.2) !important;
+  color: var(--body-text) !important;
+  background: transparent !important;
+}
+
+.btn-ghost:hover {
+  border-color: var(--brand-blue) !important;
+  background: rgba(0, 71, 224, 0.04) !important;
+  color: var(--brand-blue) !important;
+}
+
+/* Status Tags */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  padding: .25rem .6rem;
+  border-radius: 9999px;
+  font-size: .7rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.04) !important;
+  color: var(--body-text) !important;
+}
+
+.tag.toxic {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+.tag.safe {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+}
+
+/* Dynamic form styles to clean up dark inline styles */
+input[type="text"], input[type="number"], input[type="search"], select, textarea {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: var(--body-text) !important;
+  border-radius: .75rem !important;
+  padding: .7rem 1rem !important;
+  outline: none !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="search"]:focus, select:focus, textarea:focus {
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 71, 224, 0.12) !important;
+}
+
+/* Symptom checklists in doctor.html */
+#symptoms label, #care label {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: var(--body-text) !important;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+#symptoms label:hover, #care label:hover {
+  background: rgba(0, 71, 224, 0.02) !important;
+  border-color: rgba(0, 71, 224, 0.2) !important;
+}
+
+#symptoms input[type="checkbox"], #care input[type="checkbox"] {
+  accent-color: var(--brand-green) !important;
+}
+
+/* Water Calculator scheduling date boxes */
+#out div[style*="background:rgba(0,0,0,.25)"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* Pro tip boxes */
+div[style*="background:rgba(92,183,113"] {
+  background: var(--leaf-100) !important;
+  border: 1px solid var(--brand-green) !important;
+}
+
+/* Navigation Overrides to enforce light-mode text & brand active links */
+header .glass {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+header a {
+  color: var(--body-text) !important;
+}
+
+header .nav-links a {
+  color: rgba(19, 34, 23, 0.7) !important;
+  transition: color 0.2s;
+}
+
+header .nav-links a:hover, header .nav-links a.active {
+  color: var(--brand-blue) !important;
+}
+
+/* Footer override to maintain dark theme at the very bottom */
+footer {
+  background: var(--brand-dark) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+footer a, footer p, footer span {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+footer a:hover {
+  color: #ffffff !important;
+}
+
+/* Tool showcase section overrides (maintaining dark mode glass cards) */
+#tools .glass {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+}
+#tools .glass h3 {
+  color: #ffffff !important;
+}
+#tools .glass p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+#tools .glass:hover {
+  border-color: var(--brand-blue) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Global overrides for inline cream text styles inside main elements */
+main p[style*="color:rgba(247,243,234"],
+main p[style*="color: rgba(247, 243, 234"],
+main span[style*="color:rgba(247,243,234"],
+main span[style*="color: rgba(247, 243, 234"],
+main article[style*="color:rgba(247,243,234"],
+main article[style*="color: rgba(247, 243, 234"] {
+  color: rgba(19, 34, 23, 0.75) !important;
+}
+
+main a[style*="color:rgba(247,243,234"],
+main a[style*="color: rgba(247, 243, 234"] {
+  color: rgba(19, 34, 23, 0.7) !important;
+  transition: color 0.2s;
+}
+
+main a[style*="color:rgba(247,243,234"]:hover,
+main a[style*="color: rgba(247, 243, 234"]:hover {
+  color: var(--brand-blue) !important;
+}
+
