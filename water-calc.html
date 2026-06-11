@@ -6,7 +6,7 @@
 <title>Water Calculator · HousePlants</title>
 <meta name="description" content="Calculate the optimal watering schedule and target volume for your houseplants based on species type, pot size, light levels, and current season." />
 <link rel="icon" href="/assets/app-icon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
@@ -16,16 +16,16 @@
   <header class="reveal">
     <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Tool</p>
     <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">Water calculator</h1>
-    <p style="color:rgba(247,243,234,.7);margin-top:1rem">A personalized watering schedule based on plant type, pot size, light, and season.</p>
+    <p style="color:rgba(19,34,23,.7);margin-top:1rem">A personalized watering schedule based on plant type, pot size, light, and season.</p>
   </header>
 
   <form id="form" class="glass reveal" style="margin-top:2rem;padding:1.5rem;border-radius:1.5rem;display:grid;gap:1rem">
     <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Plant name</span>
-      <input id="plant" type="text" placeholder="e.g., Monstera" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)"/>
+      <input id="plant" type="text" placeholder="e.g., Monstera" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--body-text)"/>
     </label>
     <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
       <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Plant type</span>
-        <select id="type" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)">
+        <select id="type" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--body-text)">
           <option value="aroid">Aroid (Monstera, Pothos…)</option>
           <option value="tropical">Tropical foliage</option>
           <option value="fern">Fern</option>
@@ -35,17 +35,17 @@
         </select>
       </label>
       <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Pot diameter (cm)</span>
-        <input id="pot" type="number" value="15" min="5" max="60" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)"/>
+        <input id="pot" type="number" value="15" min="5" max="60" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--body-text)"/>
       </label>
       <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Light level</span>
-        <select id="light" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)">
+        <select id="light" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--body-text)">
           <option value="low">Low</option>
           <option value="bright" selected>Bright indirect</option>
           <option value="direct">Direct sun</option>
         </select>
       </label>
       <label style="display:grid;gap:.4rem"><span style="font-size:.75rem;font-weight:700;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em">Season</span>
-        <select id="season" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--cream)">
+        <select id="season" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:.75rem;padding:.7rem 1rem;color:var(--body-text)">
           <option value="spring">Spring</option>
           <option value="summer" selected>Summer</option>
           <option value="autumn">Autumn</option>
@@ -60,8 +60,8 @@
     <div class="glass" style="padding:1.5rem;border-radius:1.5rem">
       <p style="font-size:.75rem;color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.15em">Monstera's plan (Example)</p>
       <h2 class="font-display" style="font-size:2.5rem;font-weight:900;margin:.25rem 0">Every <span class="gradient-text">6 days</span></h2>
-      <p style="color:rgba(247,243,234,.7)">~265 ml per watering. Always check the top inch of soil before pouring — that overrides any schedule.</p>
-      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:rgba(92,183,113,.1);border:1px solid rgba(92,183,113,.3)">
+      <p style="color:rgba(19,34,23,.7)">~265 ml per watering. Always check the top inch of soil before pouring — that overrides any schedule.</p>
+      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:var(--leaf-100);border:2px solid #111">
         <p style="font-size:.8rem;font-weight:700;color:var(--leaf-300)">Pro tip</p>
         <p style="margin-top:.25rem;font-size:.9rem">Water until it runs from the drainage hole, then empty the saucer after 15 minutes. Standing water is the #1 cause of root rot.</p>
       </div>
@@ -109,17 +109,17 @@ function calc(){
     <div class="glass" style="padding:1.5rem;border-radius:1.5rem">
       <p style="font-size:.75rem;color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.15em">${plant}'s plan</p>
       <h2 class="font-display" style="font-size:2.5rem;font-weight:900;margin:.25rem 0">Every <span class="gradient-text">${days} days</span></h2>
-      <p style="color:rgba(247,243,234,.7)">~${waterMl} ml per watering. Always check the top inch of soil before pouring — that overrides any schedule.</p>
+      <p style="color:rgba(19,34,23,.7)">~${waterMl} ml per watering. Always check the top inch of soil before pouring — that overrides any schedule.</p>
 
       <div style="margin-top:1.5rem;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
-        ${dates.map((d,i)=>`<div style="background:rgba(0,0,0,.25);padding:1rem;border-radius:1rem">
+        ${dates.map((d,i)=>`<div style="background:#ffffff;border:2px solid #111;padding:1rem">
           <p style="font-size:.7rem;color:var(--leaf-300);font-weight:700;text-transform:uppercase">Watering ${i+1}</p>
           <p style="font-weight:800;font-size:1.05rem;margin-top:.25rem">${d}</p>
-          <p style="color:rgba(247,243,234,.6);font-size:.8rem;margin-top:.25rem">~${waterMl} ml</p>
+          <p style="color:rgba(19,34,23,.6);font-size:.8rem;margin-top:.25rem">~${waterMl} ml</p>
         </div>`).join('')}
       </div>
 
-      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:rgba(92,183,113,.1);border:1px solid rgba(92,183,113,.3)">
+      <div style="margin-top:1.5rem;padding:1rem;border-radius:1rem;background:var(--leaf-100);border:2px solid #111">
         <p style="font-size:.8rem;font-weight:700;color:var(--leaf-300)">Pro tip</p>
         <p style="margin-top:.25rem;font-size:.9rem">Water until it runs from the drainage hole, then empty the saucer after 15 minutes. Standing water is the #1 cause of root rot.</p>
       </div>

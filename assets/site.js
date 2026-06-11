@@ -3,7 +3,7 @@
   const NAV = `
     <header style="position:fixed;top:0;inset-inline:0;z-index:40">
       <div style="max-width:72rem;margin:1rem auto 0;padding:0 1rem">
-        <div class="glass" style="border-radius:9999px;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+        <div class="glass" style="position:relative;border-radius:9999px;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
           <a href="/" style="display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--body-text);text-decoration:none">
             <img src="/assets/app-icon.png" style="width:28px;height:28px;border-radius:6px" alt="" />
             <span>HousePlants</span>
@@ -14,14 +14,33 @@
             <a data-link="/doctor.html" href="/doctor.html">Doctor</a>
             <a data-link="/toxicity.html" href="/toxicity.html">Toxicity</a>
           </nav>
-          <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="btn btn-primary" style="padding:.5rem 1rem;font-size:.875rem">Download</a>
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="btn btn-primary" style="padding:.5rem 1rem;font-size:.75rem">Download</a>
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+          </div>
+        </div>
+        <div aria-hidden="true" style="display:flex;height:12px;border:2px solid #111;border-top:none;background:#fff;margin:0 10px">
+          <div style="flex:3;background:#DD0100;border-right:2px solid #111"></div>
+          <div style="flex:4;background:#fff;border-right:2px solid #111"></div>
+          <div style="flex:2;background:#0E4DA4;border-right:2px solid #111"></div>
+          <div style="flex:2;background:#FAC901;border-right:2px solid #111"></div>
+          <div style="flex:1;background:#111"></div>
         </div>
       </div>
     </header>
     <style>
       .nav-links a{color:rgba(19,34,23,.7);text-decoration:none;transition:color .2s}
       .nav-links a:hover, .nav-links a.active{color:var(--brand-blue)}
-      @media (max-width: 720px){ .nav-links{display:none !important} }
+      .nav-toggle{display:none;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid #111;background:#FAC901;color:var(--body-text);font-size:1rem;cursor:pointer}
+      @media (max-width: 720px){
+        .nav-toggle{display:inline-flex}
+        .nav-links{display:none !important}
+        .nav-links.open{display:flex !important;position:absolute;top:calc(100% + .6rem);left:0;right:0;flex-direction:column;align-items:stretch !important;gap:0 !important;padding:0;background:#ffffff;border:2px solid #111;box-shadow:6px 6px 0 #111}
+        .nav-links.open a{padding:.75rem 1rem;border-bottom:2px solid #111}
+        .nav-links.open a:last-child{border-bottom:none}
+        .nav-links.open a:hover{background:#FAC901}
+        .nav-links.open a.active{background:#DD0100;color:#fff !important}
+      }
     </style>
   `;
 
@@ -52,15 +71,28 @@
     if (footHost) footHost.innerHTML = FOOTER;
     const yr = document.getElementById('year');
     if (yr) yr.textContent = new Date().getFullYear();
-    // mark active link
+    // mark active link (works with and without Vercel cleanUrls stripping .html)
+    const norm = p => p.replace(/\.html$/, '');
+    const path = norm(location.pathname);
     document.querySelectorAll('.nav-links a').forEach(a => {
-      const link = a.getAttribute('data-link');
-      if (location.pathname.endsWith(link)) {
+      const link = norm(a.getAttribute('data-link'));
+      if (path.endsWith(link)) {
         a.classList.add('active');
-      } else if (link === '/tools.html' && (location.pathname.includes('/water-calc') || location.pathname.includes('/fertilizer'))) {
+      } else if (link === '/tools' && (path.includes('/water-calc') || path.includes('/fertilizer'))) {
         a.classList.add('active');
       }
     });
+    // mobile menu
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    if (toggle && links) {
+      toggle.addEventListener('click', () => {
+        const open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        toggle.textContent = open ? '✕' : '☰';
+      });
+    }
   }
 
   function setupReveal() {

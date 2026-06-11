@@ -1,30 +1,42 @@
-/* HousePlants shared styles - Revamped Brand Palette */
+/* HousePlants shared styles — Mondrian / De Stijl aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
 :root {
-  /* Logo color palette */
-  --brand-green: #00b050;
-  --brand-blue: #0047e0;
-  --brand-red: #ff1a1a;
-  --brand-yellow: #ffd000;
-  --brand-orange: #ff8800;
-  --brand-pink: #ff8ea0;
-  --brand-dark: #132217;
+  /* Mondrian primaries */
+  --mond-red: #DD0100;
+  --mond-blue: #0E4DA4;
+  --mond-yellow: #FAC901;
+  --mond-black: #111111;
+
+  --brand-green: #111111;
+  --brand-blue: #0E4DA4;
+  --brand-red: #DD0100;
+  --brand-yellow: #FAC901;
+  --brand-orange: #DD0100;
+  --brand-pink: #FAC901;
+  --brand-dark: #111111;
 
   /* Theme variables */
-  --body-bg: #fdfcf9;
-  --body-text: #132217;
-  --cream: #fdfcf9;
-  
-  /* HSL adapted leaf colors for light/vibrant theme */
-  --leaf-50: #f4fcf6;
-  --leaf-100: #e2f9e9;
-  --leaf-200: #c1f3cf;
-  --leaf-300: #00b050; /* Brand green for highlighted elements */
-  --leaf-400: #0047e0; /* Brand blue for primary elements */
-  --leaf-500: #008f44;
-  --leaf-600: #007537;
-  --leaf-700: #005a2a;
-  --leaf-800: #e2f9e9; /* Light mint backdrop for plant thumbs */
-  --leaf-900: #132217; /* Deep woodland green/charcoal */
+  --body-bg: #FAF7F0;
+  --body-text: #111111;
+  --cream: #FAF7F0;
+
+  /* Legacy leaf scale remapped to the De Stijl palette */
+  --leaf-50: #ffffff;
+  --leaf-100: #FFF6D8; /* pale yellow panels (pro tips) */
+  --leaf-200: #FAC901;
+  --leaf-300: #DD0100; /* eyebrow labels / accents */
+  --leaf-400: #0E4DA4; /* primary elements */
+  --leaf-500: #111111;
+  --leaf-600: #0E4DA4;
+  --leaf-700: #111111;
+  --leaf-800: #F1EEE6; /* plant thumb backdrop */
+  --leaf-900: #111111;
+}
+
+/* Mondrian is all rectangles */
+* {
+  border-radius: 0 !important;
 }
 
 html {
@@ -40,44 +52,48 @@ body {
 }
 
 .font-display {
-  font-family: "Fraunces", serif;
+  font-family: "Archivo Black", Inter, ui-sans-serif, sans-serif;
+  letter-spacing: -0.01em;
+  font-weight: 400 !important;
 }
 
 .grain {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px);
-  background-size: 3px 3px;
+  background-image: none;
 }
 
-/* Glassmorphism card overlays - Overrides inline styles */
+/* Flat white panels with black frames (no glassmorphism) */
 .glass {
-  background: rgba(255, 255, 255, 0.75) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  backdrop-filter: blur(20px) !important;
-  box-shadow: 0 8px 30px rgba(19, 34, 23, 0.04) !important;
+  background: #ffffff !important;
+  border: 2px solid var(--mond-black) !important;
+  backdrop-filter: none !important;
+  box-shadow: 6px 6px 0 var(--mond-black) !important;
   color: var(--body-text) !important;
 }
 
 .chip {
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  backdrop-filter: none;
+  background: #ffffff;
+  border: 2px solid var(--mond-black);
   color: var(--body-text);
 }
 
+/* Hard color stops — no blended gradients */
 .gradient-text {
-  background: linear-gradient(120deg, var(--brand-blue), var(--brand-green) 40%, var(--brand-orange) 80%, var(--brand-pink));
+  background: linear-gradient(90deg,
+    var(--mond-red) 0%, var(--mond-red) 34%,
+    var(--mond-blue) 34%, var(--mond-blue) 67%,
+    var(--mond-yellow) 67%, var(--mond-yellow) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .ring-glow {
-  box-shadow: 0 30px 80px -20px rgba(0, 71, 224, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.06) inset;
+  box-shadow: 8px 8px 0 var(--mond-black);
 }
 
 .blob {
-  filter: blur(80px);
-  opacity: 0.25;
+  display: none;
 }
 
 .reveal {
@@ -91,19 +107,18 @@ body {
   transform: none;
 }
 
-/* Tilt cards with logo color accents */
+/* Framed cards: shift on hover, no 3D tilt */
 .tilt {
-  transition: transform .6s cubic-bezier(.2, .7, .2, 1), border-color .3s, box-shadow .3s;
+  transition: transform .2s ease, box-shadow .2s ease;
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border: 2px solid var(--mond-black) !important;
   color: var(--body-text) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  box-shadow: 6px 6px 0 var(--mond-black) !important;
 }
 
 .tilt:hover {
-  transform: perspective(1200px) rotateY(-6deg) rotateX(4deg) scale(1.02);
-  border-color: var(--brand-blue) !important;
-  box-shadow: 0 15px 40px rgba(0, 71, 224, 0.08) !important;
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 var(--mond-red) !important;
 }
 
 /* Plant Thumbnail backgrounds */
@@ -111,7 +126,7 @@ body {
   width: 100%;
   aspect-ratio: 1;
   background: var(--leaf-800) !important;
-  border-radius: 1rem;
+  border-bottom: 2px solid var(--mond-black);
   display: grid;
   place-items: center;
   font-size: 2.5rem;
@@ -129,34 +144,40 @@ body {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
-  border-radius: 9999px;
+  border: 2px solid var(--mond-black);
   padding: .75rem 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .85rem;
   text-decoration: none;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  box-shadow: 4px 4px 0 var(--mond-black);
 }
 
 .btn-primary {
-  background: var(--brand-blue) !important;
+  background: var(--mond-red) !important;
   color: #ffffff !important;
 }
 
 .btn-primary:hover {
-  background: var(--brand-green) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 176, 80, 0.2);
+  background: var(--mond-blue) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--mond-black);
 }
 
 .btn-ghost {
-  border: 1px solid rgba(19, 34, 23, 0.2) !important;
+  border: 2px solid var(--mond-black) !important;
   color: var(--body-text) !important;
-  background: transparent !important;
+  background: #ffffff !important;
 }
 
 .btn-ghost:hover {
-  border-color: var(--brand-blue) !important;
-  background: rgba(0, 71, 224, 0.04) !important;
-  color: var(--brand-blue) !important;
+  background: var(--mond-yellow) !important;
+  color: var(--body-text) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--mond-black);
 }
 
 /* Status Tags */
@@ -165,73 +186,59 @@ body {
   align-items: center;
   gap: .3rem;
   padding: .25rem .6rem;
-  border-radius: 9999px;
+  border: 1.5px solid var(--mond-black);
   font-size: .7rem;
   font-weight: 700;
-  background: rgba(0, 0, 0, 0.04) !important;
+  background: #ffffff !important;
   color: var(--body-text) !important;
 }
 
 .tag.toxic {
-  background: #fee2e2 !important;
-  color: #991b1b !important;
+  background: var(--mond-red) !important;
+  color: #ffffff !important;
 }
 
 .tag.safe {
-  background: #d1fae5 !important;
-  color: #065f46 !important;
+  background: var(--mond-blue) !important;
+  color: #ffffff !important;
 }
 
-/* Dynamic form styles to clean up dark inline styles */
+/* Form fields: black frames, blue focus */
 input[type="text"], input[type="number"], input[type="search"], select, textarea {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border: 2px solid var(--mond-black) !important;
   color: var(--body-text) !important;
-  border-radius: .75rem !important;
   padding: .7rem 1rem !important;
   outline: none !important;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: box-shadow 0.15s;
 }
 
 input[type="text"]:focus, input[type="number"]:focus, input[type="search"]:focus, select:focus, textarea:focus {
-  border-color: var(--brand-blue) !important;
-  box-shadow: 0 0 0 3px rgba(0, 71, 224, 0.12) !important;
+  border-color: var(--mond-blue) !important;
+  box-shadow: 3px 3px 0 var(--mond-blue) !important;
 }
 
 /* Symptom checklists in doctor.html */
 #symptoms label, #care label {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border: 2px solid var(--mond-black) !important;
   color: var(--body-text) !important;
-  transition: border-color 0.2s, background 0.2s;
+  transition: background 0.15s;
 }
 
 #symptoms label:hover, #care label:hover {
-  background: rgba(0, 71, 224, 0.02) !important;
-  border-color: rgba(0, 71, 224, 0.2) !important;
+  background: var(--mond-yellow) !important;
 }
 
 #symptoms input[type="checkbox"], #care input[type="checkbox"] {
-  accent-color: var(--brand-green) !important;
+  accent-color: var(--mond-black) !important;
 }
 
-/* Water Calculator scheduling date boxes */
-#out div[style*="background:rgba(0,0,0,.25)"] {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01) !important;
-}
-
-/* Pro tip boxes */
-div[style*="background:rgba(92,183,113"] {
-  background: var(--leaf-100) !important;
-  border: 1px solid var(--brand-green) !important;
-}
-
-/* Navigation Overrides to enforce light-mode text & brand active links */
+/* Navigation Overrides */
 header .glass {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: #ffffff !important;
+  border: 2px solid var(--mond-black) !important;
+  box-shadow: 6px 6px 0 var(--mond-black) !important;
 }
 
 header a {
@@ -239,63 +246,29 @@ header a {
 }
 
 header .nav-links a {
-  color: rgba(19, 34, 23, 0.7) !important;
-  transition: color 0.2s;
+  color: var(--body-text) !important;
+  font-weight: 600;
+  transition: color 0.15s;
 }
 
-header .nav-links a:hover, header .nav-links a.active {
-  color: var(--brand-blue) !important;
+header .nav-links a:hover {
+  color: var(--mond-blue) !important;
 }
 
-/* Footer override to maintain dark theme at the very bottom */
+header .nav-links a.active {
+  color: var(--mond-red) !important;
+}
+
+/* Footer: black slab */
 footer {
-  background: var(--brand-dark) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  background: var(--mond-black) !important;
+  border-top: 4px solid var(--mond-black) !important;
 }
 
 footer a, footer p, footer span {
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 footer a:hover {
-  color: #ffffff !important;
+  color: var(--mond-yellow) !important;
 }
-
-/* Tool showcase section overrides (maintaining dark mode glass cards) */
-#tools .glass {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-}
-#tools .glass h3 {
-  color: #ffffff !important;
-}
-#tools .glass p {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-#tools .glass:hover {
-  border-color: var(--brand-blue) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-}
-
-/* Global overrides for inline cream text styles inside main elements */
-main p[style*="color:rgba(247,243,234"],
-main p[style*="color: rgba(247, 243, 234"],
-main span[style*="color:rgba(247,243,234"],
-main span[style*="color: rgba(247, 243, 234"],
-main article[style*="color:rgba(247,243,234"],
-main article[style*="color: rgba(247, 243, 234"] {
-  color: rgba(19, 34, 23, 0.75) !important;
-}
-
-main a[style*="color:rgba(247,243,234"],
-main a[style*="color: rgba(247, 243, 234"] {
-  color: rgba(19, 34, 23, 0.7) !important;
-  transition: color 0.2s;
-}
-
-main a[style*="color:rgba(247,243,234"]:hover,
-main a[style*="color: rgba(247, 243, 234"]:hover {
-  color: var(--brand-blue) !important;
-}
-

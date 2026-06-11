@@ -6,7 +6,7 @@
 <title>Pet Safety · HousePlants</title>
 <meta name="description" content="Check if your houseplants are toxic to cats, dogs, or children. Instant toxicity and pet safety lookups across all 727 plants." />
 <link rel="icon" href="/assets/app-icon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
@@ -16,11 +16,11 @@
   <header class="reveal">
     <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Toxicity checker</p>
     <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">Is it <span class="gradient-text" style="font-style:italic">safe?</span></h1>
-    <p style="color:rgba(247,243,234,.7);margin-top:1rem;max-width:36rem">Quick lookup across all 727 plants for pet & child safety. Type a name or browse by category.</p>
+    <p style="color:rgba(19,34,23,.7);margin-top:1rem;max-width:36rem">Quick lookup across all 727 plants for pet & child safety. Type a name or browse by category.</p>
   </header>
 
   <div class="glass reveal" style="margin-top:2rem;padding:1.25rem;border-radius:1.5rem;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-    <input id="q" type="search" placeholder="🔎 Type a plant name…" style="background:rgba(0,0,0,.25);border:1px solid rgba(247,243,234,.1);border-radius:9999px;padding:.7rem 1rem;color:var(--cream);grid-column:1/-1" />
+    <input id="q" type="search" placeholder="🔎 Type a plant name…" style="background:#ffffff;border:1px solid rgba(19,34,23,.1);border-radius:9999px;padding:.7rem 1rem;color:var(--body-text);grid-column:1/-1" />
     <button data-tox="" class="btn btn-ghost tox-btn">All plants</button>
     <button data-tox="Toxic" class="btn btn-ghost tox-btn">⚠ Toxic only</button>
     <button data-tox="Non-Toxic" class="btn btn-ghost tox-btn">✓ Safe only</button>
@@ -28,54 +28,54 @@
 
   <div id="stats" class="reveal" style="margin-top:1.5rem;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))"></div>
 
-  <p id="count" style="margin-top:1.5rem;color:rgba(247,243,234,.6);font-size:.875rem"></p>
+  <p id="count" style="margin-top:1.5rem;color:rgba(19,34,23,.6);font-size:.875rem"></p>
   <div id="grid" style="margin-top:1rem;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
     <!-- Pre-rendered for SEO / First-paint -->
-    <a href="/plant.html?id=1" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=1" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/philodendron.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Philodendron Hederaceum</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Philodendron</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Philodendron</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
-    <a href="/plant.html?id=12" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=51" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/monstera.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Monstera Deliciosa</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Monstera</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Monstera</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
-    <a href="/plant.html?id=15" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=72" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/anthurium.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Anthurium Andraeanum</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Anthurium</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Anthurium</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
-    <a href="/plant.html?id=25" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=251" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/snake_plant.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Sansevieria Laurentii</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Sansevieria</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Sansevieria</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
-    <a href="/plant.html?id=30" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=145" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/pothos.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Golden Pothos</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Epipremnum</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Epipremnum</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
-    <a href="/plant.html?id=45" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+    <a href="/plant.html?id=99" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/alocasia.png" style="width:100%;height:100%;object-fit:cover"/></div>
       <div style="flex:1;min-width:0">
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Alocasia Polly</p>
-        <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">Alocasia</p>
+        <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">Alocasia</p>
       </div>
       <span class="tag toxic">⚠</span>
     </a>
@@ -89,11 +89,11 @@ let ALL=[], filter={q:'',tox:''};
 function row(p){
   const isToxic = (p.toxicity||'').toLowerCase().includes('toxic') && !(p.toxicity||'').toLowerCase().includes('non');
   const img = plantImage(p);
-  return `<a href="/plant.html?id=${p.id}" class="tilt" style="text-decoration:none;color:inherit;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+  return `<a href="/plant.html?id=${p.id}" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;border:1px solid rgba(0,0,0,0.06);border-radius:1rem;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
     <div style="width:48px;height:48px;border-radius:8px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0">${img?`<img src="${img}" style="width:100%;height:100%;object-fit:cover"/>`:`<span>${plantEmoji(p)}</span>`}</div>
     <div style="flex:1;min-width:0">
       <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.common_name}</p>
-      <p style="font-size:.7rem;color:rgba(247,243,234,.5);font-style:italic">${p.genus||''}</p>
+      <p style="font-size:.7rem;color:rgba(19,34,23,.5);font-style:italic">${p.genus||''}</p>
     </div>
     <span class="tag ${isToxic?'toxic':'safe'}">${isToxic?'⚠':'✓'}</span>
   </a>`;
@@ -115,9 +115,9 @@ loadPlants().then(plants=>{
   const safe  = ALL.filter(p=>(p.toxicity||'').toLowerCase().includes('non-toxic')).length;
   document.getElementById('stats').innerHTML = `
     <div class="glass" style="padding:1rem;border-radius:1rem"><p style="font-size:.75rem;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em;font-weight:700">Total</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${ALL.length}</p></div>
-    <div class="glass" style="padding:1rem;border-radius:1rem;background:rgba(122,31,31,.2)"><p style="font-size:.75rem;color:#fca5a5;text-transform:uppercase;letter-spacing:.15em;font-weight:700">⚠ Toxic</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${toxic}</p></div>
-    <div class="glass" style="padding:1rem;border-radius:1rem;background:rgba(31,77,58,.3)"><p style="font-size:.75rem;color:#bce6c2;text-transform:uppercase;letter-spacing:.15em;font-weight:700">✓ Safe</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${safe}</p></div>
-    <div class="glass" style="padding:1rem;border-radius:1rem"><p style="font-size:.75rem;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em;font-weight:700">Unknown</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${ALL.length-toxic-safe}</p></div>
+    <div style="padding:1rem;border-radius:1rem;background:#DD0100;border:2px solid #111"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">⚠ Toxic</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${toxic}</p></div>
+    <div style="padding:1rem;border-radius:1rem;background:#0E4DA4;border:2px solid #111"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">✓ Safe</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${safe}</p></div>
+    <div class="glass" style="padding:1rem;border-radius:1rem"><p style="font-size:.75rem;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em;font-weight:700">Varies / unknown</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${ALL.length-toxic-safe}</p></div>
   `;
   apply();
   document.getElementById('q').addEventListener('input', e=>{ filter.q = e.target.value; apply(); });
