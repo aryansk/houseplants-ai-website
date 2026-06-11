@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Our Story · HousePlants</title>
+<meta name="description" content="How HousePlants went from a graveyard of dead pothos and a guilty spreadsheet to a 727-plant iOS care companion. The honest, unpolished timeline." />
+<meta property="og:title" content="Our Story · HousePlants" />
+<meta property="og:description" content="From dead plants to a plant-care app. The honest timeline." />
+<meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
+<link rel="icon" href="/assets/app-icon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<style>
+  .timeline{position:relative;margin-top:4rem}
+  .timeline::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:4px;background:var(--mond-black)}
+  .milestone{position:relative;padding:0 0 3.5rem 3rem}
+  .milestone:last-child{padding-bottom:0}
+  .milestone .dot{position:absolute;left:0;top:.2rem;width:26px;height:26px;border:3px solid var(--mond-black);background:var(--mond-yellow)}
+  .milestone:nth-child(3n+2) .dot{background:var(--mond-red)}
+  .milestone:nth-child(3n) .dot{background:var(--mond-blue)}
+  .milestone .date{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;border:2px solid var(--mond-black);padding:.3rem .7rem;box-shadow:4px 4px 0 var(--mond-black)}
+  .milestone h2{font-weight:800;font-size:clamp(1.35rem,2.6vw,1.75rem);margin-top:1rem;line-height:1.15}
+  .milestone p{margin-top:.75rem;color:rgba(19,34,23,.85);line-height:1.7;max-width:38rem}
+  .milestone p + p{margin-top:.6rem}
+  .milestone figure{margin-top:1.25rem;max-width:30rem;background:#fff;border:2px solid var(--mond-black);box-shadow:6px 6px 0 var(--mond-black)}
+  .milestone figure img{display:block;width:100%;background:var(--leaf-800)}
+  .milestone figure figcaption{font-size:.8rem;padding:.6rem .8rem;border-top:2px solid var(--mond-black);color:rgba(19,34,23,.65)}
+  .milestone blockquote{margin-top:1rem;max-width:34rem;background:var(--leaf-100);border:2px solid var(--mond-black);border-left-width:10px;padding:1rem 1.25rem;font-weight:600;line-height:1.6}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--mond-black);background:#fff;box-shadow:6px 6px 0 var(--mond-black);margin-top:1.25rem;max-width:34rem}
+  .stat-row > div{padding:1rem;border-right:2px solid var(--mond-black)}
+  .stat-row > div:last-child{border-right:none}
+  .stat-row strong{display:block;font-family:'Archivo Black',sans-serif;font-size:1.4rem}
+  .stat-row span{font-size:.75rem;color:rgba(19,34,23,.6);text-transform:uppercase;letter-spacing:.08em}
+  @media (max-width:560px){ .stat-row{grid-template-columns:1fr}.stat-row>div{border-right:none;border-bottom:2px solid var(--mond-black)}.stat-row>div:last-child{border-bottom:none} }
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<main style="max-width:48rem;margin:0 auto;padding:9rem 1.5rem 4rem">
+
+  <p style="font-size:.8rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mond-red)">Our Story</p>
+  <h1 class="font-display" style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.02;margin-top:.75rem">It started with a<br /><span class="gradient-text">dead pothos.</span></h1>
+  <p style="margin-top:1.5rem;color:rgba(19,34,23,.75);line-height:1.7;max-width:38rem;font-size:1.05rem">
+    HousePlants wasn't planned, pitched, or funded. It's an indie app that grew out of one
+    person killing plants, getting annoyed about it, and refusing to stop until the
+    spreadsheet became an app. This is the honest timeline — failures included.
+  </p>
+
+  <div class="timeline">
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">2021</span>
+      <h2 class="font-display">The graveyard years</h2>
+      <p>Like a lot of people stuck inside in 2021, I (Aryan — hi) filled my apartment with plants. A monstera, two pothos, a fiddle-leaf fig that cost more than my desk chair. Within six months, most of them were dead or dramatically dying.</p>
+      <p>I did what every plant parent does: googled "yellow leaves," got twelve contradictory answers, and overwatered out of guilt. The fig never forgave me.</p>
+      <figure>
+        <img src="/assets/plants/pothos.png" alt="Illustration of a pothos plant" loading="lazy" />
+        <figcaption>The pothos. RIP, version one through three.</figcaption>
+      </figure>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">2022</span>
+      <h2 class="font-display">The spreadsheet of shame</h2>
+      <p>Round two. This time I tracked everything in a spreadsheet: pot sizes, watering dates, which window each plant sat in, what the leaves looked like each week. It was ugly. It also worked — for the first time, things stopped dying.</p>
+      <p>The lesson stuck with me: plant care isn't hard, it's just <em>specific</em>. A snake plant in a 4-inch pot by a north window is a completely different problem from the same plant in a 10-inch pot in full sun. Generic advice kills plants. Calibrated advice saves them.</p>
+      <blockquote>"What if the spreadsheet just… knew the answers?"</blockquote>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">2023</span>
+      <h2 class="font-display">Nights, weekends, and a very rough prototype</h2>
+      <p>I started building an iOS app after work. The first version was embarrassing: a list of 40 plants and a watering reminder that fired at random times. I showed it to friends. They were polite, which is worse than honest.</p>
+      <p>But two ideas from that prototype survived everything since: the app should work <strong>completely offline</strong>, and it should never ask you to make an account. Your plants live in your home; your data should too.</p>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">Early 2024</span>
+      <h2 class="font-display">Going deep on the database</h2>
+      <p>I spent months doing the unglamorous part: building a real botanical reference. Cross-checking care ranges, toxicity data, light requirements, and humidity tolerances species by species. The database grew from 40 plants to 200, then past 500.</p>
+      <p>Somewhere in there I learned to measure light properly, and the AR Sun Seeker was born — point your camera at a spot, get an actual reading instead of guessing whether "bright indirect" applies.</p>
+      <figure>
+        <img src="/assets/screenshots/discover.png" alt="Screenshot of the HousePlants discover screen" loading="lazy" />
+        <figcaption>The reference library taking shape.</figcaption>
+      </figure>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">Mid 2024</span>
+      <h2 class="font-display">The doctor will see you now</h2>
+      <p>The feature I wanted most was the one I'd needed in 2021: something to answer "why is this leaf yellow?" with an actual diagnosis instead of a forum argument. The Plant Doctor became a symptom-based wizard — discoloration, droop, pests — that yields ranked probable causes and fixes.</p>
+      <p>Beta testers used it more than everything else combined. That told me what the app really was: not a plant encyclopedia, but a set of calibrated instruments.</p>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">Late 2024</span>
+      <h2 class="font-display">Launch (quietly)</h2>
+      <p>HousePlants shipped to the App Store with no launch video, no press list, and no idea what would happen. The first week brought a handful of downloads, mostly friends. Every single review was read approximately forty times.</p>
+      <p>Then a plant subreddit found the toxicity checker, and for one strange weekend the download graph did something I had to screenshot to believe.</p>
+      <div class="stat-row">
+        <div><strong>727</strong><span>plants in the library</span></div>
+        <div><strong>12</strong><span>calibrated tools</span></div>
+        <div><strong>0</strong><span>accounts required</span></div>
+      </div>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">2025</span>
+      <h2 class="font-display">Listening, fixing, repeating</h2>
+      <p>The year of iteration. Users asked for an NPK fertilizer doser, so I built one. They asked for pet-safety data on every species, so the toxicity index went app-wide. They asked for moon gardening and I said no, then read the emails again, then built it anyway. (It's surprisingly popular. I don't ask questions.)</p>
+      <p>The illustrated species library passed 178 hand-finished plants, and the design found its identity — hard geometry, primary colors, no fluff. If Mondrian had kept houseplants, this is the app he'd have wanted.</p>
+      <figure>
+        <img src="/assets/screenshots/tools.png" alt="Screenshot of the HousePlants tools screen" loading="lazy" />
+        <figcaption>The full instrument panel, 2025 edition.</figcaption>
+      </figure>
+    </section>
+
+    <section class="milestone reveal">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="date">2026</span>
+      <h2 class="font-display">Still growing</h2>
+      <p>Today HousePlants is still a one-person indie app, still offline-first, still account-free. This website now carries free web versions of the core tools — the <a href="/doctor.html" style="color:var(--mond-blue);font-weight:600">Plant Doctor</a>, <a href="/water-calc.html" style="color:var(--mond-blue);font-weight:600">Water Calculator</a>, <a href="/fertilizer.html" style="color:var(--mond-blue);font-weight:600">Fertilizer Doser</a>, and <a href="/toxicity.html" style="color:var(--mond-blue);font-weight:600">Toxicity Checker</a> — because the point was never downloads. It was fewer dead plants.</p>
+      <p>The fiddle-leaf fig? I bought another one. It's thriving. The story isn't finished — and neither is the app.</p>
+    </section>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="glass reveal" style="margin-top:4rem;padding:2rem;text-align:center">
+    <h2 class="font-display" style="font-weight:900;font-size:clamp(1.5rem,3vw,2rem)">Be part of the next chapter</h2>
+    <p style="margin-top:.6rem;color:rgba(19,34,23,.7)">Grow an indoor jungle that actually survives.</p>
+    <div style="margin-top:1.25rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="/download.html" class="btn btn-primary">Download the app</a>
+      <a href="/tools.html" class="btn">Try the free tools</a>
+    </div>
+  </div>
+
+</main>
+
+<div id="footer"></div>
+<script src="/assets/site.js"></script>
+</body>
+</html>

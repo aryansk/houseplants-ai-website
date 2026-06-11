@@ -13,6 +13,7 @@
             <a data-link="/tools.html" href="/tools.html">Tools</a>
             <a data-link="/doctor.html" href="/doctor.html">Doctor</a>
             <a data-link="/toxicity.html" href="/toxicity.html">Toxicity</a>
+            <a data-link="/story.html" href="/story.html">Our Story</a>
           </nav>
           <div style="display:flex;align-items:center;gap:.6rem">
             <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="btn btn-primary" style="padding:.5rem 1rem;font-size:.75rem">Download</a>
@@ -55,6 +56,7 @@
           <a href="/toxicity.html" style="color:inherit">Toxicity</a> ·
           <a href="/water-calc.html" style="color:inherit">Water Calc</a> ·
           <a href="/download.html" style="color:inherit">Download</a> ·
+          <a href="/story.html" style="color:inherit">Our Story</a> ·
           <a href="/privacy.html" style="color:inherit">Privacy</a> ·
           <a href="/terms.html" style="color:inherit">Terms</a> ·
           <a href="mailto:hello@houseplants.ai" style="color:inherit">Contact</a>
