@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Plant Doctor · HousePlants</title>
 <meta name="description" content="Use the HousePlants diagnostic wizard to check symptoms like yellow leaves, drooping, brown tips, or pests, and get probabilistic care treatments instantly." />
+<link rel="canonical" href="https://houseplants-ai-website-1.vercel.app/doctor" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Plant Doctor · HousePlants" />
+<meta property="og:description" content="Use the HousePlants diagnostic wizard to check symptoms like yellow leaves, drooping, brown tips, or pests, and get probabilistic care treatments instantly." />
+<meta property="og:url" content="https://houseplants-ai-website-1.vercel.app/doctor" />
+<meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/assets/app-icon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
@@ -16,58 +23,58 @@
   <header class="reveal">
     <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Plant Doctor</p>
     <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">What's wrong with my plant?</h1>
-    <p style="color:rgba(19,34,23,.7);margin-top:1rem">Pick the symptoms you see. We'll map them to the most likely causes and treatments.</p>
+    <p style="color:rgba(17,17,17,.7);margin-top:1rem">Pick the symptoms you see. We'll map them to the most likely causes and treatments.</p>
   </header>
 
-  <section class="glass reveal" style="margin-top:2rem;padding:1.5rem;border-radius:1.5rem">
+  <section class="glass reveal" style="margin-top:2rem;padding:1.5rem">
     <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em">Symptoms</p>
     <div id="symptoms" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
       <!-- Pre-rendered for SEO / First-paint -->
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="yellow_leaves" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Yellow leaves</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="brown_tips" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Brown leaf tips</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="drooping" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Drooping / wilting</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="leaf_drop" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Leaves falling off</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="spots" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Spots on leaves</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="white_powder" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">White powdery coating</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="webbing" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Webbing under leaves</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="sticky_residue" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Sticky residue</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="leggy" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Leggy / stretching</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="curling" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Curling leaves</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="mushy_stem" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Mushy stem or base</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="pale_new_growth" data-set="symptoms" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Pale new growth</span>
       </label>
@@ -76,35 +83,35 @@
     <p style="font-weight:700;text-transform:uppercase;font-size:.75rem;color:var(--leaf-300);letter-spacing:.15em;margin-top:1.5rem">Recent care</p>
     <div id="care" style="margin-top:1rem;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
       <!-- Pre-rendered for SEO / First-paint -->
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="watered_recently" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Watered in last 3 days</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="long_no_water" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Not watered in 2+ weeks</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="low_window" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Far from any window</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="south_window" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Direct south-facing sun</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="dry_air" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Dry / heated air</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="cold_draft" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Near a cold draft</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="recent_repot" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Repotted in last month</span>
       </label>
-      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+      <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
         <input type="checkbox" data-id="recent_fert" data-set="care" style="accent-color:var(--leaf-400)" />
         <span style="font-size:.875rem">Fertilized recently</span>
       </label>
@@ -174,7 +181,7 @@ const CAUSES = {
 
 function renderToggles(host, items, selected){
   document.getElementById(host).innerHTML = items.map(s=>`
-    <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;border-radius:9999px;cursor:pointer;border:1px solid rgba(19,34,23,.08)">
+    <label style="display:flex;align-items:center;gap:.5rem;background:#ffffff;padding:.6rem .9rem;cursor:pointer;border:1px solid rgba(17,17,17,.08)">
       <input type="checkbox" data-id="${s.id}" data-set="${host}" style="accent-color:var(--leaf-400)" ${selected.has(s.id)?'checked':''} />
       <span style="font-size:.875rem">${s.label}</span>
     </label>`).join('');
@@ -213,7 +220,7 @@ document.getElementById('diagnose').addEventListener('click', ()=>{
   const total = ranked.reduce((s,[,v])=>s+v,0);
   const out = document.getElementById('results');
   if (!ranked.length){
-    out.innerHTML = `<div class="glass" style="padding:1.5rem;border-radius:1.25rem;color:rgba(19,34,23,.7)">Select at least one symptom to diagnose.</div>`;
+    out.innerHTML = `<div class="glass" style="padding:1.5rem;color:rgba(17,17,17,.7)">Select at least one symptom to diagnose.</div>`;
     return;
   }
   out.innerHTML = `
@@ -222,18 +229,18 @@ document.getElementById('diagnose').addEventListener('click', ()=>{
       ${ranked.slice(0,5).map(([id,score])=>{
         const c = CAUSES[id] || {title:id, desc:'', fix:''};
         const pct = Math.round((score/total)*100);
-        return `<div class="glass" style="padding:1.25rem;border-radius:1.25rem">
+        return `<div class="glass" style="padding:1.25rem">
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem">
             <h3 style="font-weight:800;font-size:1.1rem">${c.title}</h3>
             <span style="color:var(--leaf-300);font-weight:700">${pct}%</span>
           </div>
-          <div style="height:6px;border-radius:9999px;background:rgba(0,0,0,0.08);overflow:hidden;margin-top:.5rem"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--leaf-400),var(--leaf-600))"></div></div>
-          <p style="color:rgba(19,34,23,.75);margin-top:.75rem;font-size:.9rem">${c.desc}</p>
+          <div style="height:6px;background:rgba(0,0,0,0.08);overflow:hidden;margin-top:.5rem"><div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--leaf-400),var(--leaf-600))"></div></div>
+          <p style="color:rgba(17,17,17,.75);margin-top:.75rem;font-size:.9rem">${c.desc}</p>
           <p style="color:var(--leaf-600);margin-top:.5rem;font-size:.9rem"><strong>Fix:</strong> ${c.fix}</p>
         </div>`;
       }).join('')}
     </div>
-    <p style="margin-top:1rem;color:rgba(19,34,23,.5);font-size:.8rem">This is a heuristic guide. For persistent issues, consult a horticulturist.</p>
+    <p style="margin-top:1rem;color:rgba(17,17,17,.5);font-size:.8rem">This is a heuristic guide. For persistent issues, consult a horticulturist.</p>
   `;
   out.scrollIntoView({behavior:'smooth', block:'start'});
 });

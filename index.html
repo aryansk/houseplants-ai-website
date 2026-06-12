@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HousePlants — Your Indoor Jungle, Engineered.</title>
   <meta name="description" content="727 plants (including 178+ illustrated species), AR sun seeker, plant doctor, and 12 calibrated tools — a beautifully crafted iOS app for serious plant parents." />
+  <link rel="canonical" href="https://houseplants-ai-website-1.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://houseplants-ai-website-1.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:title" content="HousePlants" />
   <meta property="og:description" content="An intelligent iOS plant care companion." />
   <meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
@@ -74,10 +78,17 @@
     .plant-card{border:2px solid #111;box-shadow:6px 6px 0 #111}
     .plant-card img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
     .plant-card:hover img{transform:scale(1.08)}
-    .gradient-text{background:linear-gradient(90deg,#DD0100 0% 34%,#0E4DA4 34% 67%,#FAC901 67% 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .gradient-text{color:#DD0100}
+    .hl{background:#FAC901;color:#111;padding:0 .15em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
     .mondrian-strip{display:flex;height:12px;border:2px solid #111;border-top:none;background:#fff}
     .mondrian-strip div{border-right:2px solid #111}
     .mondrian-strip div:last-child{border-right:none}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .marquee,.float-y{animation:none}
+      .reveal{opacity:1;transform:none;transition:none}
+      .tilt,.plant-card img{transition:none}
+    }
   </style>
 </head>
 <body class="text-leaf-900 bg-cream antialiased font-sans selection:bg-brand-blue selection:text-white">
@@ -144,7 +155,7 @@
           <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span> Available now on iOS 17+
         </span>
         <h1 class="mt-6 font-display font-black tracking-tight text-5xl md:text-7xl leading-[1.02] text-brand-dark">
-          Your indoor jungle, <span class="gradient-text italic">engineered.</span>
+          Your indoor jungle, <span class="hl italic">engineered.</span>
         </h1>
         <p class="mt-6 text-lg text-leaf-900/70 max-w-xl">
           HousePlants pairs a 727-plant database (including 178+ illustrated species) with calibrated horticultural tools — AR light meter, symptom-based plant doctor, NPK dosing, lunar planting calendar, and more.
@@ -360,7 +371,7 @@
   <section id="download" class="relative py-32 overflow-hidden bg-brand-dark text-white">
     <canvas id="scene3" class="absolute inset-0"></canvas>
     <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
-      <h2 class="font-display text-6xl md:text-7xl font-black tracking-tight">Your jungle<br/><span class="gradient-text italic">awaits.</span></h2>
+      <h2 class="font-display text-6xl md:text-7xl font-black tracking-tight">Your jungle<br/><span class="hl italic">awaits.</span></h2>
       <p class="mt-6 text-lg text-white/70">Built natively for iOS 17+. Offline-first. No account, no tracking.</p>
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="rounded-full bg-white hover:bg-[#f7f3ea] text-brand-dark px-8 py-4 font-bold shadow-2xl flex items-center gap-3">
@@ -475,8 +486,15 @@
         my = (e.clientY / window.innerHeight - 0.5) * 2;
       });
 
+      // only render while the canvas is on screen and the tab is visible
+      let visible = true;
+      const vio = new IntersectionObserver(es => { visible = es[0].isIntersecting; });
+      vio.observe(canvas);
+
       const clock = new THREE.Clock();
       function tick() {
+        requestAnimationFrame(tick);
+        if (!visible || document.hidden) return;
         const t = clock.getElapsedTime();
         group.rotation.y = t * 0.05 + mx * 0.4;
         group.rotation.x = my * 0.2;
@@ -491,14 +509,15 @@
           }
         }
         renderer.render(scene, camera);
-        requestAnimationFrame(tick);
       }
       tick();
     }
 
-    buildScene('scene',  { count: 18, orb: true });
-    buildScene('scene2', { count: 10, orb: false });
-    buildScene('scene3', { count: 14, orb: true });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      buildScene('scene',  { count: 18, orb: true });
+      buildScene('scene2', { count: 10, orb: false });
+      buildScene('scene3', { count: 14, orb: true });
+    }
   </script>
 </body>
 </html>

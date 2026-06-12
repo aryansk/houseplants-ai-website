@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://houseplants-ai-website-1.vercel.app/</loc><priority>1.0</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/catalog</loc><priority>0.9</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/tools</loc><priority>0.9</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/doctor</loc><priority>0.8</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/toxicity</loc><priority>0.8</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/water-calc</loc><priority>0.8</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/fertilizer</loc><priority>0.8</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/story</loc><priority>0.6</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/download</loc><priority>0.7</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://houseplants-ai-website-1.vercel.app/terms</loc><priority>0.3</priority></url>
+</urlset>

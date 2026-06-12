@@ -3,12 +3,12 @@
   const NAV = `
     <header style="position:fixed;top:0;inset-inline:0;z-index:40">
       <div style="max-width:72rem;margin:1rem auto 0;padding:0 1rem">
-        <div class="glass" style="position:relative;border-radius:9999px;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+        <div class="glass" style="position:relative;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
           <a href="/" style="display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--body-text);text-decoration:none">
-            <img src="/assets/app-icon.png" style="width:28px;height:28px;border-radius:6px" alt="" />
+            <img src="/assets/app-icon.png" style="width:28px;height:28px" alt="" />
             <span>HousePlants</span>
           </a>
-          <nav class="nav-links" style="display:flex;align-items:center;gap:2rem;font-size:.875rem;font-weight:500;color:rgba(19,34,23,.7)">
+          <nav class="nav-links" style="display:flex;align-items:center;gap:2rem;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.7)">
             <a data-link="/catalog.html" href="/catalog.html">Catalog</a>
             <a data-link="/tools.html" href="/tools.html">Tools</a>
             <a data-link="/doctor.html" href="/doctor.html">Doctor</a>
@@ -30,7 +30,7 @@
       </div>
     </header>
     <style>
-      .nav-links a{color:rgba(19,34,23,.7);text-decoration:none;transition:color .2s}
+      .nav-links a{color:rgba(17,17,17,.7);text-decoration:none;transition:color .2s}
       .nav-links a:hover, .nav-links a.active{color:var(--brand-blue)}
       .nav-toggle{display:none;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid #111;background:#FAC901;color:var(--body-text);font-size:1rem;cursor:pointer}
       @media (max-width: 720px){
@@ -110,106 +110,56 @@
     return _plantsPromise;
   };
 
-  // Map a plant name keyword to a local botanical illustration if we have one
+  // Local botanical illustrations, reserved for the exact species they depict.
+  // Everything else gets a generated Mondrian tile (plantTile) so the grid
+  // never repeats the same artwork.
   const IMG_MAP = [
-    ['monstera', '/assets/plants/monstera.png'],
-    ['philodendron', '/assets/plants/philodendron.png'],
-    ['anthurium', '/assets/plants/anthurium.png'],
-    ['snake plant', '/assets/plants/snake_plant.png'],
-    ['sansevieria', '/assets/plants/snake_plant.png'],
-    ['dracaena trifasciata', '/assets/plants/snake_plant.png'],
-    ['pothos', '/assets/plants/pothos.png'],
-    ['epipremnum', '/assets/plants/pothos.png'],
-    ['alocasia', '/assets/plants/alocasia.png'],
+    ['monstera deliciosa', '/assets/plants/monstera.png'],
+    ['philodendron hederaceum', '/assets/plants/philodendron.png'],
+    ['heartleaf', '/assets/plants/philodendron.png'],
+    ['anthurium andraeanum', '/assets/plants/anthurium.png'],
+    ['laurentii', '/assets/plants/snake_plant.png'],
+    ['golden pothos', '/assets/plants/pothos.png'],
+    ['alocasia polly', '/assets/plants/alocasia.png'],
   ];
-
-  const UNSPLASH_POOL = {
-    cactus: [
-      'https://images.unsplash.com/photo-1508849789987-4e5333c12b78?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1521458401476-78957159ae0b?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1459411621453-7b03977f4bef?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1509587524206-f30419e1e1f8?w=600&auto=format&fit=crop&q=80'
-    ],
-    fern: [
-      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1580974511812-4b7196c56830?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600&auto=format&fit=crop&q=80'
-    ],
-    palm: [
-      'https://images.unsplash.com/photo-1501747315-124a0eaca060?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1525498128493-380d12906ef5?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1596436889106-be35e843f974?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=600&auto=format&fit=crop&q=80'
-    ],
-    flower: [
-      'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1508780709619-79562169bc64?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1494707924440-293d36091443?w=600&auto=format&fit=crop&q=80'
-    ],
-    succulent: [
-      'https://images.unsplash.com/photo-1520302630591-fd1c66edc19d?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1491147334573-44cbb4602074?w=600&auto=format&fit=crop&q=80'
-    ],
-    tree: [
-      'https://images.unsplash.com/photo-1512428813833-df70f77a5236?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1597055142663-f472251a37c3?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1598880940375-d4e511674403?w=600&auto=format&fit=crop&q=80'
-    ],
-    calathea: [
-      'https://images.unsplash.com/photo-1610991148415-e0d0246a4897?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600&auto=format&fit=crop&q=80'
-    ],
-    bromeliad: [
-      'https://images.unsplash.com/photo-1508022833827-98555475918d?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=600&auto=format&fit=crop&q=80'
-    ],
-    general: [
-      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1533038590840-1cde6e668a91?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1517573801209-62204853e9a2?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1526333699007-ee60224b7933?w=600&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1584447128309-b66b7a4f1b63?w=600&auto=format&fit=crop&q=80'
-    ]
-  };
 
   window.plantImage = function (plant) {
     const n = (plant.common_name || '').toLowerCase();
-    const g = (plant.genus || '').toLowerCase();
     for (const [key, src] of IMG_MAP) {
-      if (n.includes(key) || g.includes(key)) return src;
+      if (n.includes(key)) return src;
     }
+    return null;
+  };
 
-    // Classify by category/genus
-    let cat = 'general';
-    if (/cact|opuntia|euphorb|cereus|mammillaria|echinocactus|rebutia|cleistocactus|lophophora|gymnocalycium/.test(n) || /cact|opuntia|euphorb|cereus|mammillaria|echinocactus|rebutia|cleistocactus|lophophora|gymnocalycium/.test(g)) {
-      cat = 'cactus';
-    } else if (/fern|nephrolepis|adiantum|platycerium|asplenium|athyrium|pteris|polystichum/.test(n) || /fern|nephrolepis|adiantum|platycerium|asplenium|athyrium|pteris|polystichum/.test(g)) {
-      cat = 'fern';
-    } else if (/palm|areca|chamaedorea|dypsis|howea|caryota|phoenix|ravenea|licuala/.test(n) || /palm|areca|chamaedorea|dypsis|howea|caryota|phoenix|ravenea|licuala/.test(g)) {
-      cat = 'palm';
-    } else if (/orchid|rose|lily|hibiscus|chrysanth|bougain|petun|anthurium|spathiphyllum|begonia|cyclamen|geranium|jasmine|gardenia|streptocarpus|african violet/.test(n) || /orchid|rose|lily|hibiscus|chrysanth|bougain|petun|anthurium|spathiphyllum|begonia|cyclamen|geranium|jasmine|gardenia|streptocarpus|african violet/.test(g)) {
-      cat = 'flower';
-    } else if (/succulent|echeveria|haworthia|crassula|aloe|sedum|sempervivum|agave|kalanchoe|senecio|cotyledon|aonium|graptopetalum|pachyphytum/.test(n) || /succulent|echeveria|haworthia|crassula|aloe|sedum|sempervivum|agave|kalanchoe|senecio|cotyledon|aonium|graptopetalum|pachyphytum/.test(g)) {
-      cat = 'succulent';
-    } else if (/tree|ficus|bonsai|schefflera|pachira|citrus|coffea|dracaena|beaucarnea|cupressus|juniperus|pinus|acer/.test(n) || /tree|ficus|bonsai|schefflera|pachira|citrus|coffea|dracaena|beaucarnea|cupressus|juniperus|pinus|acer/.test(g)) {
-      cat = 'tree';
-    } else if (/calathea|goeppertia|maranta|ctenanthe|stromanthe/.test(n) || /calathea|goeppertia|maranta|ctenanthe|stromanthe/.test(g)) {
-      cat = 'calathea';
-    } else if (/bromeliad|tillandsia|guzmania|vriesea|aechmea|neoregelia/.test(n) || /bromeliad|tillandsia|guzmania|vriesea|aechmea|neoregelia/.test(g)) {
-      cat = 'bromeliad';
-    }
-
-    const list = UNSPLASH_POOL[cat];
-    const idx = (plant.id || 0) % list.length;
-    return list[idx];
+  // Generated De Stijl tile: a small seeded Mondrian composition so plants
+  // without a real illustration each get unique, on-brand artwork.
+  window.plantTile = function (plant, emojiSize) {
+    const id = Math.abs(plant.id || 0);
+    const L = [
+      { c: '2fr 1fr', r: '1fr 2fr', emoji: 0 },
+      { c: '1fr 2fr', r: '2fr 1fr', emoji: 3 },
+      { c: '3fr 2fr', r: '2fr 1fr', emoji: 1 },
+      { c: '1fr 1fr', r: '2fr 1fr', emoji: 2 },
+      { c: '2fr 3fr', r: '3fr 2fr', emoji: 0 },
+      { c: '3fr 1fr', r: '1fr 1fr', emoji: 0 },
+    ][id % 6];
+    const PERMS = [
+      ['#DD0100', '#FAC901', '#0E4DA4'],
+      ['#0E4DA4', '#ffffff', '#DD0100'],
+      ['#FAC901', '#0E4DA4', '#ffffff'],
+      ['#ffffff', '#DD0100', '#FAC901'],
+      ['#FAC901', '#ffffff', '#0E4DA4'],
+      ['#0E4DA4', '#DD0100', '#ffffff'],
+      ['#DD0100', '#ffffff', '#FAC901'],
+    ];
+    const colors = PERMS[id % 7];
+    let ci = 0;
+    const cells = [0, 1, 2, 3].map(i =>
+      i === L.emoji
+        ? `<div style="background:#fff;display:grid;place-items:center;font-size:${emojiSize || '2rem'}">${plantEmoji(plant)}</div>`
+        : `<div style="background:${colors[ci++]}"></div>`
+    ).join('');
+    return `<div aria-hidden="true" style="width:100%;height:100%;display:grid;grid-template-columns:${L.c};grid-template-rows:${L.r};gap:3px;background:#111">${cells}</div>`;
   };
 
   window.plantEmoji = function (plant) {

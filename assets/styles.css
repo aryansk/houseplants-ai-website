@@ -77,15 +77,18 @@ body {
   color: var(--body-text);
 }
 
-/* Hard color stops — no blended gradients */
+/* Accent text: solid primary red — no mid-letter gradient slicing */
 .gradient-text {
-  background: linear-gradient(90deg,
-    var(--mond-red) 0%, var(--mond-red) 34%,
-    var(--mond-blue) 34%, var(--mond-blue) 67%,
-    var(--mond-yellow) 67%, var(--mond-yellow) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--mond-red);
+}
+
+/* Highlight slab: black type on a yellow plane, De Stijl style */
+.hl {
+  background: var(--mond-yellow);
+  color: #111;
+  padding: 0 .15em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .ring-glow {
@@ -271,4 +274,22 @@ footer a, footer p, footer span {
 
 footer a:hover {
   color: var(--mond-yellow) !important;
+}
+
+/* Respect OS-level reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
