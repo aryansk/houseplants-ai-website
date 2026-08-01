@@ -1,6 +1,6 @@
 # HousePlants — Marketing & Web Companion Site
 
-This repository contains the marketing and web-companion website for the **HousePlants** iOS app. Designed with a Piet Mondrian / De Stijl aesthetic — primary-color blocks, black grid lines, and hard geometry — the site showcases the native application's features while providing fully functional web versions of its core care tools.
+This repository contains the marketing and web-companion website for the **HousePlants** iOS app. It uses the **Indie House** visual language — warm paper, navy ink, bright room colors, editorial type, handwritten notes, and tactile cut-paper details — while providing fully functional web versions of the app's core care tools.
 
 ---
 
@@ -25,11 +25,11 @@ The site includes fully interactive, client-side versions of four core companion
 
 ## 🎨 Design System & Aesthetics
 
-* **Typography**: Heavy geometric display headers ([Archivo Black](https://fonts.google.com/specimen/Archivo+Black)) paired with clean, highly readable body copy ([Inter](https://fonts.google.com/specimen/Inter)).
-* **Color Palette**: Mondrian primaries on an off-white canvas — red (`#DD0100`), blue (`#0E4DA4`), yellow (`#FAC901`), and black (`#111111`) on `#FAF7F0`. No gradients; headline accents use hard color stops.
-* **Composition**: Rectangles only (global `border-radius: 0`), 2px black frames on every panel, hard offset shadows (`6px 6px 0 #111`), and a signature red/white/blue/yellow color-bar strip under the navigation on every page.
-* **Micro-Animations**: Reveal-on-scroll elements (`.reveal`) and framed cards that shift on hover with the offset shadow turning red.
-* **3D Visuals**: Three interactive **Three.js** canvas backdrops that float flat De Stijl color panels around a spinning primary-red cube with black wireframe edges.
+* **Typography**: Editorial [Playfair Display](https://fonts.google.com/specimen/Playfair+Display), highly readable [Inter](https://fonts.google.com/specimen/Inter), and [Caveat](https://fonts.google.com/specimen/Caveat) for the studio's handwritten annotations.
+* **Color Palette**: The Indie House palette — paper (`#f5eddc`), navy ink (`#17213b`), green (`#2a9d54`), yellow (`#f5c518`), red (`#e5372b`), blue (`#1e3ad6`), orange (`#f0941f`), and pink (`#ff92b6`).
+* **Composition**: Warm grid paper, 2px navy frames, hard offset shadows, lightly rotated cards, cut labels, colored “rooms,” and the same full-width studio chrome used on Indie House.
+* **Micro-Animations**: Lightweight CSS marquee, phone-float, and card-hover effects with a reduced-motion fallback.
+* **Rendering**: Below-fold homepage rooms use `content-visibility`, while decorative motion stays CSS-only to avoid a 3D runtime and continuous WebGL work.
 
 ---
 
@@ -37,7 +37,7 @@ The site includes fully interactive, client-side versions of four core companion
 
 To maximize SEO performance and ensure compatibility with search index crawlers (like Googlebot) or users browsing with JavaScript disabled, the site utilizes a **hybrid hydration system**:
 * **Static Fallbacks**: The initial HTML templates include pre-rendered mock previews of the database grids, symptom checklists, and calculator plans.
-* **Hydration**: When the shared client controller ([site.js](assets/site.js)) loads:
+* **Shared runtime**: When the small shared client controller ([site.js](assets/site.js)) loads:
   1. It injects the standard navbar and unified professional footer across pages.
   2. It fetches the static plant database (`plants.json`) and replaces the mock fallbacks with fully interactive elements.
 * **SEO Best Practices**: Proper title tags, absolute Open Graph metadata (configured with absolute vercel banners), and JSON-LD schema markup (`SoftwareApplication`) are embedded natively.
@@ -46,7 +46,14 @@ To maximize SEO performance and ensure compatibility with search index crawlers 
 
 ## 💻 Local Preview & Development
 
-The site is built using pure static HTML and CSS variables (with Tailwind config utility variables for structural layout). There is no complex compiler or build step required.
+The site ships as static HTML. Tailwind is compiled once during development instead of running in visitors' browsers, and the plant generator pre-renders every detail page.
+
+Install dependencies and rebuild generated assets after changing homepage utility classes or plant data:
+
+```bash
+npm install
+npm run build
+```
 
 To launch a local web server:
 ```bash
@@ -63,5 +70,5 @@ Then navigate to `http://localhost:3000` (or `http://localhost:8000`).
 ## 🚀 Deployment
 
 The repository is pre-configured for instant zero-config deployments:
-* **Vercel**: Run `vercel` from the root directory or import via the Vercel dashboard.
-* **Netlify / Cloudflare Pages**: Connect the repository, set the build command to empty, and point the publish directory to `/` or `.`.
+* **Vercel**: Use `npm run build` as the build command and `.` as the output directory.
+* **Netlify / Cloudflare Pages**: Use `npm run build` as the build command and publish `/` or `.`.

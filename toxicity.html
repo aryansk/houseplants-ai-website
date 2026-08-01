@@ -13,13 +13,16 @@
 <meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/assets/app-icon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+<link rel="apple-touch-icon" href="/assets/app-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div id="nav"></div>
 
-<main style="max-width:64rem;margin:0 auto;padding:8rem 1.5rem 4rem">
+<main id="main" style="max-width:64rem;margin:0 auto;padding:8rem 1.5rem 4rem">
   <header class="reveal">
     <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">Toxicity checker</p>
     <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1.05">Is it <span class="hl" style="font-style:italic">safe?</span></h1>
@@ -27,7 +30,7 @@
   </header>
 
   <div class="glass reveal" style="margin-top:2rem;padding:1.25rem;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
-    <input id="q" type="search" placeholder="🔎 Type a plant name…" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text);grid-column:1/-1" />
+    <input id="q" type="search" placeholder="Type a plant name…" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text);grid-column:1/-1" />
     <button data-tox="" class="btn btn-ghost tox-btn">All plants</button>
     <button data-tox="Toxic" class="btn btn-ghost tox-btn">⚠ Toxic only</button>
     <button data-tox="Non-Toxic" class="btn btn-ghost tox-btn">✓ Safe only</button>
@@ -44,7 +47,7 @@
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Philodendron Hederaceum</p>
         <p style="font-size:.7rem;color:rgba(17,17,17,.5);font-style:italic">Philodendron</p>
       </div>
-      <span class="tag toxic">⚠</span>
+      <span class="tag toxic">Toxic</span>
     </a>
     <a href="/plant.html?id=51" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/monstera.png" style="width:100%;height:100%;object-fit:cover"/></div>
@@ -52,7 +55,7 @@
         <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Monstera Deliciosa</p>
         <p style="font-size:.7rem;color:rgba(17,17,17,.5);font-style:italic">Monstera</p>
       </div>
-      <span class="tag toxic">⚠</span>
+      <span class="tag toxic">Toxic</span>
     </a>
     <a href="/plant.html?id=72" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
       <div style="width:48px;height:48px;background:var(--leaf-800);overflow:hidden;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0"><img src="/assets/plants/anthurium.png" style="width:100%;height:100%;object-fit:cover"/></div>
@@ -87,34 +90,46 @@
       <span class="tag toxic">⚠</span>
     </a>
   </div>
+  <div style="display:flex;justify-content:center;margin-top:2.5rem">
+    <button id="more" class="btn btn-ghost">Load more</button>
+  </div>
 </main>
 
 <div id="footer"></div>
 <script src="/assets/site.js"></script>
+<script src="/assets/plant-info.js"></script>
 <script>
-let ALL=[], filter={q:'',tox:''};
+let ALL=[], FILTERED=[], shown=0, PAGE=60, filter={q:'',tox:''};
 function row(p){
   const isToxic = (p.toxicity||'').toLowerCase().includes('toxic') && !(p.toxicity||'').toLowerCase().includes('non');
   const img = plantImage(p);
-  return `<a href="/plant.html?id=${p.id}" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
+  return `<a href="/plants/${PlantInfo.slugify(p.common_name)}" class="tilt" style="text-decoration:none;color:inherit;background:#ffffff;overflow:hidden;display:flex;align-items:center;gap:.75rem;padding:.75rem">
     <div style="width:48px;height:48px;background:var(--leaf-800);overflow:hidden;flex-shrink:0">${img?`<img src="${img}" style="width:100%;height:100%;object-fit:cover"/>`:plantTile(p, '1.1rem')}</div>
     <div style="flex:1;min-width:0">
       <p style="font-weight:700;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.common_name}</p>
       <p style="font-size:.7rem;color:rgba(17,17,17,.5);font-style:italic">${p.genus||''}</p>
     </div>
-    <span class="tag ${isToxic?'toxic':'safe'}">${isToxic?'⚠':'✓'}</span>
+    <span class="tag ${isToxic?'toxic':'safe'}">${isToxic?'Toxic':'Safe'}</span>
   </a>`;
 }
 function apply(){
   const q = filter.q.toLowerCase();
-  const filtered = ALL.filter(p => {
+  FILTERED = ALL.filter(p => {
     if (q && !(p.common_name+' '+p.genus).toLowerCase().includes(q)) return false;
     if (filter.tox === 'Toxic') return (p.toxicity||'').toLowerCase().includes('toxic') && !(p.toxicity||'').toLowerCase().includes('non');
     if (filter.tox === 'Non-Toxic') return (p.toxicity||'').toLowerCase().includes('non-toxic');
     return true;
   });
-  document.getElementById('count').textContent = `${filtered.length} of ${ALL.length} plants`;
-  document.getElementById('grid').innerHTML = filtered.slice(0,200).map(row).join('');
+  shown = 0;
+  document.getElementById('grid').innerHTML = '';
+  render();
+  document.getElementById('count').textContent = `${FILTERED.length} of ${ALL.length} plants`;
+}
+function render(){
+  const slice = FILTERED.slice(shown, shown + PAGE);
+  document.getElementById('grid').insertAdjacentHTML('beforeend', slice.map(row).join(''));
+  shown += slice.length;
+  document.getElementById('more').style.display = shown < FILTERED.length ? '' : 'none';
 }
 loadPlants().then(plants=>{
   ALL = plants;
@@ -122,13 +137,14 @@ loadPlants().then(plants=>{
   const safe  = ALL.filter(p=>(p.toxicity||'').toLowerCase().includes('non-toxic')).length;
   document.getElementById('stats').innerHTML = `
     <div class="glass" style="padding:1rem"><p style="font-size:.75rem;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em;font-weight:700">Total</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${ALL.length}</p></div>
-    <div style="padding:1rem;background:#DD0100;border:2px solid #111"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">⚠ Toxic</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${toxic}</p></div>
-    <div style="padding:1rem;background:#0E4DA4;border:2px solid #111"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">✓ Safe</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${safe}</p></div>
+    <div style="padding:1rem;background:var(--red);border:2px solid var(--ink)"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">Toxic</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${toxic}</p></div>
+    <div style="padding:1rem;background:var(--green);border:2px solid var(--ink)"><p style="font-size:.75rem;color:#ffffff;text-transform:uppercase;letter-spacing:.15em;font-weight:700">Safe</p><p class="font-display" style="font-weight:900;font-size:1.75rem;color:#ffffff">${safe}</p></div>
     <div class="glass" style="padding:1rem"><p style="font-size:.75rem;color:var(--leaf-300);text-transform:uppercase;letter-spacing:.15em;font-weight:700">Varies / unknown</p><p class="font-display" style="font-weight:900;font-size:1.75rem">${ALL.length-toxic-safe}</p></div>
   `;
   apply();
   document.getElementById('q').addEventListener('input', e=>{ filter.q = e.target.value; apply(); });
   document.querySelectorAll('.tox-btn').forEach(b=>b.addEventListener('click', ()=>{ filter.tox = b.dataset.tox; apply(); }));
+  document.getElementById('more').addEventListener('click', render);
 });
 </script>
 </body>

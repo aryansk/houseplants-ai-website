@@ -13,13 +13,16 @@
 <meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/assets/app-icon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+<link rel="apple-touch-icon" href="/assets/app-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div id="nav"></div>
 
-<main style="max-width:72rem;margin:0 auto;padding:8rem 1.5rem 4rem">
+<main id="main" style="max-width:72rem;margin:0 auto;padding:8rem 1.5rem 4rem">
   <header class="reveal">
     <p style="color:var(--leaf-300);font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.75rem">The Catalog</p>
     <h1 class="font-display" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:900;margin:.5rem 0 0;line-height:1">727 plants. <span style="color:var(--mond-red);font-style:italic">All</span> <span class="hl" style="font-style:italic">searchable.</span></h1>
@@ -28,7 +31,7 @@
 
   <!-- Controls -->
   <div class="glass reveal" style="margin-top:2rem;padding:1.25rem;display:grid;gap:.75rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
-    <input id="q" type="search" aria-label="Search plants by name or genus" placeholder="🔎 Search 727 plants…" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text);outline:none;grid-column:1/-1" />
+    <input id="q" type="search" aria-label="Search plants by name or genus" placeholder="Search 727 plants…" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text);outline:none;grid-column:1/-1" />
     <select id="light" aria-label="Filter by light requirements" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text)"></select>
     <select id="water" aria-label="Filter by watering needs" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text)"></select>
     <select id="diff" aria-label="Filter by care difficulty" style="background:#ffffff;border:1px solid rgba(17,17,17,.1);padding:.7rem 1rem;color:var(--body-text)"></select>
@@ -38,9 +41,9 @@
   <p id="count" style="margin-top:1.5rem;color:rgba(17,17,17,.6);font-size:.875rem"></p>
 
   <div id="grid" style="margin-top:1rem;display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
-    <!-- Pre-rendered for SEO / First-paint -->
-    <a href="/plant.html?id=1" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/philodendron.png" alt="Philodendron Hederaceum (Heartleaf)" loading="lazy" /></div>
+    <!-- Pre-rendered for SEO / first paint. Mirrors the hydrated cards exactly. -->
+    <a href="/plants/philodendron-hederaceum-heartleaf" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/philodendron.png" alt="Philodendron Hederaceum (Heartleaf)" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
         <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Philodendron Hederaceum (Heartleaf)</p>
         <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Philodendron</p>
@@ -50,8 +53,8 @@
         </div>
       </div>
     </a>
-    <a href="/plant.html?id=51" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/monstera.png" alt="Monstera Deliciosa" loading="lazy" /></div>
+    <a href="/plants/monstera-deliciosa" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/monstera.png" alt="Monstera Deliciosa" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
         <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Monstera Deliciosa</p>
         <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Monstera</p>
@@ -61,10 +64,10 @@
         </div>
       </div>
     </a>
-    <a href="/plant.html?id=72" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/anthurium.png" alt="Anthurium Andraeanum" loading="lazy" /></div>
+    <a href="/plants/anthurium-andraeanum-flamingo-flower" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/anthurium.png" alt="Anthurium Andraeanum (Flamingo Flower)" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
-        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Anthurium Andraeanum</p>
+        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Anthurium Andraeanum (Flamingo Flower)</p>
         <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Anthurium</p>
         <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
           <span class="tag">Bright Indirect</span>
@@ -72,32 +75,32 @@
         </div>
       </div>
     </a>
-    <a href="/plant.html?id=251" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/snake_plant.png" alt="Sansevieria Laurentii (Snake Plant)" loading="lazy" /></div>
+    <a href="/plants/sansevieria-dracaena-trifasciata-laurentii" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/snake_plant.png" alt="Sansevieria (Dracaena) Trifasciata (Laurentii)" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
-        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Sansevieria Laurentii (Snake Plant)</p>
-        <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Sansevieria</p>
+        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Sansevieria (Dracaena) Trifasciata (Laurentii)</p>
+        <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Sansevieria (Dracaena)</p>
         <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
-          <span class="tag">Bright Indirect</span>
+          <span class="tag">Any</span>
           <span class="tag toxic">⚠ Toxic</span>
         </div>
       </div>
     </a>
-    <a href="/plant.html?id=145" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/pothos.png" alt="Golden Pothos" loading="lazy" /></div>
+    <a href="/plants/epipremnum-pothos-aureum-golden" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/pothos.png" alt="Epipremnum (Pothos) Aureum (Golden)" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
-        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Golden Pothos</p>
-        <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Epipremnum</p>
+        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Epipremnum (Pothos) Aureum (Golden)</p>
+        <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Epipremnum (Pothos)</p>
         <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
-          <span class="tag">Bright Indirect</span>
+          <span class="tag">Low to Bright</span>
           <span class="tag toxic">⚠ Toxic</span>
         </div>
       </div>
     </a>
-    <a href="/plant.html?id=99" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
-      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/alocasia.png" alt="Alocasia Polly" loading="lazy" /></div>
+    <a href="/plants/alocasia-amazonica-polly" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+      <div class="plant-thumb" style="aspect-ratio:1/1"><img src="/assets/plants/alocasia.png" alt="Alocasia Amazonica (Polly)" width="220" height="220" loading="lazy" /></div>
       <div style="padding:1rem">
-        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Alocasia Polly</p>
+        <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">Alocasia Amazonica (Polly)</p>
         <p style="color:rgba(17,17,17,.5);font-size:.75rem;font-style:italic;margin-top:.25rem">Alocasia</p>
         <div style="margin-top:.6rem;display:flex;gap:.3rem;flex-wrap:wrap">
           <span class="tag">Bright Indirect</span>
@@ -113,6 +116,7 @@
 </main>
 
 <div id="footer"></div>
+<script src="/assets/plant-info.js"></script>
 <script src="/assets/site.js"></script>
 <script>
 let ALL = [], FILTERED = [], shown = 0, PAGE = 60;
@@ -126,16 +130,16 @@ function fillSelect(id, label, opts){
 function card(p){
   const img = plantImage(p);
   const visual = img
-    ? `<img src="${img}" alt="${p.common_name}" loading="lazy" />`
+    ? `<img src="${img}" alt="${p.common_name}" width="220" height="220" loading="lazy" />`
     : plantTile(p);
-  const t = (p.toxicity||'').toLowerCase();
-  const toxTag = t.includes('toxic') && !t.includes('non')
+  const cls = PlantInfo.toxClass(p.toxicity);
+  const toxTag = cls === 'toxic'
     ? `<span class="tag toxic">⚠ ${p.toxicity}</span>`
-    : t.includes('non-toxic')
+    : cls === 'safe'
       ? `<span class="tag safe">✓ ${p.toxicity}</span>`
       : `<span class="tag">${p.toxicity||'—'}</span>`;
   return `
-    <a href="/plant.html?id=${p.id}" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
+    <a href="/plants/${PlantInfo.slugify(p.common_name)}" class="tilt" style="text-decoration:none;color:inherit;display:block;background:#ffffff;overflow:hidden">
       <div class="plant-thumb" style="aspect-ratio:1/1">${visual}</div>
       <div style="padding:1rem">
         <p style="font-weight:700;line-height:1.2;font-size:.95rem;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical">${p.common_name}</p>
@@ -149,6 +153,25 @@ function card(p){
   `;
 }
 
+// Each search token must match somewhere in the name/genus — so "mons del"
+// still finds "Monstera Deliciosa" regardless of word order.
+function matchesQuery(p, q){
+  if (!q) return true;
+  const hay = (p.common_name+' '+p.genus).toLowerCase();
+  return q.split(/\s+/).every(tok => hay.includes(tok));
+}
+
+function syncUrl(){
+  const params = new URLSearchParams();
+  const map = { q:'q', light:'light', water:'water', diff:'diff', tox:'tox' };
+  for (const [id, key] of Object.entries(map)){
+    const v = document.getElementById(id).value.trim();
+    if (v) params.set(key, v);
+  }
+  const qs = params.toString();
+  history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+}
+
 function applyFilters(){
   const q = document.getElementById('q').value.trim().toLowerCase();
   const light = document.getElementById('light').value;
@@ -156,7 +179,7 @@ function applyFilters(){
   const diff = document.getElementById('diff').value;
   const tox = document.getElementById('tox').value;
   FILTERED = ALL.filter(p =>
-    (!q || (p.common_name+' '+p.genus).toLowerCase().includes(q)) &&
+    matchesQuery(p, q) &&
     (!light || p.light_requirements === light) &&
     (!water || p.watering_needs === water) &&
     (!diff || p.care_difficulty === diff) &&
@@ -166,6 +189,7 @@ function applyFilters(){
   document.getElementById('grid').innerHTML = '';
   render();
   document.getElementById('count').textContent = `${FILTERED.length} of ${ALL.length} plants`;
+  syncUrl();
 }
 
 function render(){
@@ -181,6 +205,12 @@ loadPlants().then(plants => {
   fillSelect('water','All watering', uniq(plants,'watering_needs'));
   fillSelect('diff','All difficulties', uniq(plants,'care_difficulty'));
   fillSelect('tox','Pet safety', uniq(plants,'toxicity'));
+  // Restore filter state from the URL so filtered views are shareable.
+  const params = new URLSearchParams(location.search);
+  ['q','light','water','diff','tox'].forEach(id => {
+    const v = params.get(id);
+    if (v != null) document.getElementById(id).value = v;
+  });
   applyFilters();
   ['q','light','water','diff','tox'].forEach(id => {
     document.getElementById(id).addEventListener('input', applyFilters);

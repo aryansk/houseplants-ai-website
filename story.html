@@ -13,7 +13,9 @@
 <meta property="og:description" content="From dead plants to a plant-care app. The honest timeline." />
 <meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
 <link rel="icon" href="/assets/app-icon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+<link rel="apple-touch-icon" href="/assets/app-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
 <style>
   .timeline{position:relative;margin-top:4rem}
@@ -34,15 +36,16 @@
   .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--mond-black);background:#fff;box-shadow:6px 6px 0 var(--mond-black);margin-top:1.25rem;max-width:34rem}
   .stat-row > div{padding:1rem;border-right:2px solid var(--mond-black)}
   .stat-row > div:last-child{border-right:none}
-  .stat-row strong{display:block;font-family:'Archivo Black',sans-serif;font-size:1.4rem}
+  .stat-row strong{display:block;font-family:'Playfair Display',Georgia,serif;font-size:1.4rem}
   .stat-row span{font-size:.75rem;color:rgba(17,17,17,.6);text-transform:uppercase;letter-spacing:.08em}
   @media (max-width:560px){ .stat-row{grid-template-columns:1fr}.stat-row>div{border-right:none;border-bottom:2px solid var(--mond-black)}.stat-row>div:last-child{border-bottom:none} }
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 <div id="nav"></div>
 
-<main style="max-width:48rem;margin:0 auto;padding:9rem 1.5rem 4rem">
+<main id="main" style="max-width:48rem;margin:0 auto;padding:9rem 1.5rem 4rem">
 
   <p style="font-size:.8rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mond-red)">Our Story</p>
   <h1 class="font-display" style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.02;margin-top:.75rem">It started with a<br /><span style="color:var(--mond-red)">dead</span> <span class="hl">pothos.</span></h1>
@@ -121,7 +124,7 @@
       <span class="date">2025</span>
       <h2 class="font-display">Listening, fixing, repeating</h2>
       <p>The year of iteration. Users asked for an NPK fertilizer doser, so I built one. They asked for pet-safety data on every species, so the toxicity index went app-wide. They asked for moon gardening and I said no, then read the emails again, then built it anyway. (It's surprisingly popular. I don't ask questions.)</p>
-      <p>The illustrated species library passed 178 hand-finished plants, and the design found its identity — hard geometry, primary colors, no fluff. If Mondrian had kept houseplants, this is the app he'd have wanted.</p>
+      <p>The illustrated species library passed 178 hand-finished plants, and the design found its identity inside Indie House — warm paper, bright rooms, cut-out color and plenty of fingerprints.</p>
       <figure>
         <img src="/assets/screenshots/tools.png" alt="Screenshot of the HousePlants tools screen" loading="lazy" />
         <figcaption>The full instrument panel, 2025 edition.</figcaption>
@@ -132,7 +135,7 @@
       <span class="dot" aria-hidden="true"></span>
       <span class="date">2026</span>
       <h2 class="font-display">Still growing</h2>
-      <p>Today HousePlants is still a one-person indie app, still offline-first, still account-free. This website now carries free web versions of the core tools — the <a href="/doctor.html" style="color:var(--mond-blue);font-weight:600">Plant Doctor</a>, <a href="/water-calc.html" style="color:var(--mond-blue);font-weight:600">Water Calculator</a>, <a href="/fertilizer.html" style="color:var(--mond-blue);font-weight:600">Fertilizer Doser</a>, and <a href="/toxicity.html" style="color:var(--mond-blue);font-weight:600">Toxicity Checker</a> — because the point was never downloads. It was fewer dead plants.</p>
+      <p>Today HousePlants is still a one-person indie app, still offline-first, still account-free. This website now carries free web versions of the core tools — the <a href="/doctor" style="color:var(--mond-blue);font-weight:600">Plant Doctor</a>, <a href="/water-calc" style="color:var(--mond-blue);font-weight:600">Water Calculator</a>, <a href="/fertilizer" style="color:var(--mond-blue);font-weight:600">Fertilizer Doser</a>, and <a href="/toxicity" style="color:var(--mond-blue);font-weight:600">Toxicity Checker</a> — because the point was never downloads. It was fewer dead plants.</p>
       <p>The fiddle-leaf fig? I bought another one. It's thriving. The story isn't finished — and neither is the app.</p>
     </section>
 
@@ -143,8 +146,8 @@
     <h2 class="font-display" style="font-weight:900;font-size:clamp(1.5rem,3vw,2rem)">Be part of the next chapter</h2>
     <p style="margin-top:.6rem;color:rgba(17,17,17,.7)">Grow an indoor jungle that actually survives.</p>
     <div style="margin-top:1.25rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
-      <a href="/download.html" class="btn btn-primary">Download the app</a>
-      <a href="/tools.html" class="btn">Try the free tools</a>
+      <a href="/download" class="btn btn-primary">Download the app</a>
+      <a href="/tools" class="btn">Try the free tools</a>
     </div>
   </div>
 

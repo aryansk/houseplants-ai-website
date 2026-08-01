@@ -1,0 +1,13 @@
+{
+  "name": "houseplants-ai-website",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "build": "npm run build:css && npm run build:plants",
+    "build:css": "tailwindcss -i ./assets/tailwind-input.css -o ./assets/tailwind.css --minify",
+    "build:plants": "node scripts/build-plants.cjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

@@ -1,67 +1,58 @@
-// Shared site helpers: nav, footer, data loading, reveal animations
+// Shared site helpers: nav, footer, app links, analytics, and plant data.
 (function () {
+  // Single source of truth for the App Store link. The app isn't live yet, so
+  // this points at a placeholder — change it here once and every "Download"
+  // button on the site (nav + any [data-app-store] link) updates.
+  const APP_STORE_URL = 'https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890';
+
   const NAV = `
-    <header style="position:fixed;top:0;inset-inline:0;z-index:40">
-      <div style="max-width:72rem;margin:1rem auto 0;padding:0 1rem">
-        <div class="glass" style="position:relative;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
-          <a href="/" style="display:flex;align-items:center;gap:.5rem;font-weight:700;color:var(--body-text);text-decoration:none">
-            <img src="/assets/app-icon.png" style="width:28px;height:28px" alt="" />
-            <span>HousePlants</span>
+    <header class="ih-header">
+      <div class="ih-header-inner">
+          <a class="ih-brand" href="/" aria-label="HousePlants home">
+            <img src="/assets/app-icon.png" alt="" />
+            <span class="ih-brand-name">HousePlants <small>/ Indie House</small></span>
           </a>
-          <nav class="nav-links" style="display:flex;align-items:center;gap:2rem;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.7)">
-            <a data-link="/catalog.html" href="/catalog.html">Catalog</a>
-            <a data-link="/tools.html" href="/tools.html">Tools</a>
-            <a data-link="/doctor.html" href="/doctor.html">Doctor</a>
-            <a data-link="/toxicity.html" href="/toxicity.html">Toxicity</a>
-            <a data-link="/story.html" href="/story.html">Our Story</a>
+          <span class="ih-header-note" aria-hidden="true">a small app from the studio →</span>
+          <nav class="nav-links" id="site-navigation">
+            <a data-link="/catalog" href="/catalog">Catalog</a>
+            <a data-link="/tools" href="/tools">Tools</a>
+            <a data-link="/doctor" href="/doctor">Doctor</a>
+            <a data-link="/toxicity" href="/toxicity">Toxicity</a>
+            <a data-link="/story" href="/story">Our Story</a>
+            <a href="${APP_STORE_URL}" class="btn btn-primary">Get the app ↗</a>
           </nav>
-          <div style="display:flex;align-items:center;gap:.6rem">
-            <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="btn btn-primary" style="padding:.5rem 1rem;font-size:.75rem">Download</a>
-            <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-          </div>
-        </div>
-        <div aria-hidden="true" style="display:flex;height:12px;border:2px solid #111;border-top:none;background:#fff;margin:0 10px">
-          <div style="flex:3;background:#DD0100;border-right:2px solid #111"></div>
-          <div style="flex:4;background:#fff;border-right:2px solid #111"></div>
-          <div style="flex:2;background:#0E4DA4;border-right:2px solid #111"></div>
-          <div style="flex:2;background:#FAC901;border-right:2px solid #111"></div>
-          <div style="flex:1;background:#111"></div>
-        </div>
+          <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation"><span></span><span></span></button>
       </div>
     </header>
-    <style>
-      .nav-links a{color:rgba(17,17,17,.7);text-decoration:none;transition:color .2s}
-      .nav-links a:hover, .nav-links a.active{color:var(--brand-blue)}
-      .nav-toggle{display:none;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid #111;background:#FAC901;color:var(--body-text);font-size:1rem;cursor:pointer}
-      @media (max-width: 720px){
-        .nav-toggle{display:inline-flex}
-        .nav-links{display:none !important}
-        .nav-links.open{display:flex !important;position:absolute;top:calc(100% + .6rem);left:0;right:0;flex-direction:column;align-items:stretch !important;gap:0 !important;padding:0;background:#ffffff;border:2px solid #111;box-shadow:6px 6px 0 #111}
-        .nav-links.open a{padding:.75rem 1rem;border-bottom:2px solid #111}
-        .nav-links.open a:last-child{border-bottom:none}
-        .nav-links.open a:hover{background:#FAC901}
-        .nav-links.open a.active{background:#DD0100;color:#fff !important}
-      }
-    </style>
   `;
 
   const FOOTER = `
-    <footer style="border-top:1px solid rgba(247,243,234,.1);padding:2.5rem 0;background:var(--leaf-900);margin-top:4rem">
-      <div style="max-width:72rem;margin:0 auto;padding:0 1.5rem;display:flex;flex-direction:column;gap:1rem;align-items:center;justify-content:space-between;font-size:.875rem;color:rgba(247,243,234,.5)">
-        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center">
-          <a href="/" style="color:inherit">Home</a> ·
-          <a href="/catalog.html" style="color:inherit">Catalog</a> ·
-          <a href="/tools.html" style="color:inherit">Tools</a> ·
-          <a href="/doctor.html" style="color:inherit">Plant Doctor</a> ·
-          <a href="/toxicity.html" style="color:inherit">Toxicity</a> ·
-          <a href="/water-calc.html" style="color:inherit">Water Calc</a> ·
-          <a href="/download.html" style="color:inherit">Download</a> ·
-          <a href="/story.html" style="color:inherit">Our Story</a> ·
-          <a href="/privacy.html" style="color:inherit">Privacy</a> ·
-          <a href="/terms.html" style="color:inherit">Terms</a> ·
-          <a href="mailto:hello@houseplants.ai" style="color:inherit">Contact</a>
+    <footer class="ih-footer">
+      <div class="ih-footer-crawl">HousePlants · made carefully at Indie House · water when the soil asks ·</div>
+      <div class="ih-footer-inner">
+        <div class="ih-footer-top">
+          <div class="ih-footer-signoff">
+            <strong>HousePlants</strong>
+            <p>A calmer, smarter home for the plants sharing your rooms.</p>
+            <em>built slowly. cared for obsessively.</em>
+          </div>
+          <nav class="ih-footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/catalog">Plant catalog</a>
+            <a href="/tools">Care tools</a>
+            <a href="/doctor">Plant doctor</a>
+            <a href="/toxicity">Toxicity checker</a>
+            <a href="/water-calc">Water calculator</a>
+            <a href="/story">Our story</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="mailto:hello@houseplants.ai">Say hello ↗</a>
+          </nav>
         </div>
-        <p>© <span id="year"></span> HousePlants · Indie iOS app by Aryan Singh</p>
+        <div class="ih-footer-bottom">
+          <p>© <span id="year"></span> HousePlants · An Indie House app by Aryan Singh</p>
+          <span class="ih-palette" aria-label="Indie House colors"><i style="background:var(--green)"></i><i style="background:var(--yellow)"></i><i style="background:var(--red)"></i><i style="background:var(--blue)"></i><i style="background:var(--pink)"></i></span>
+        </div>
       </div>
     </footer>
   `;
@@ -76,7 +67,7 @@
     // mark active link (works with and without Vercel cleanUrls stripping .html)
     const norm = p => p.replace(/\.html$/, '');
     const path = norm(location.pathname);
-    document.querySelectorAll('.nav-links a').forEach(a => {
+    document.querySelectorAll('.nav-links a[data-link]').forEach(a => {
       const link = norm(a.getAttribute('data-link'));
       if (path.endsWith(link)) {
         a.classList.add('active');
@@ -92,14 +83,24 @@
         const open = links.classList.toggle('open');
         toggle.setAttribute('aria-expanded', open);
         toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-        toggle.textContent = open ? '✕' : '☰';
       });
     }
   }
 
-  function setupReveal() {
-    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Point every App Store link (here and in page markup) at the one constant.
+  function wireAppStoreLinks() {
+    document.querySelectorAll('a[data-app-store]').forEach(a => { a.href = APP_STORE_URL; });
+  }
+
+  // Cookieless Vercel Web Analytics — no cookies, no cross-site tracking,
+  // consistent with the site's "no tracking" promise. No-ops in local dev.
+  function loadAnalytics() {
+    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    const s = document.createElement('script');
+    s.defer = true;
+    s.src = '/_vercel/insights/script.js';
+    document.head.appendChild(s);
   }
 
   let _plantsPromise = null;
@@ -110,71 +111,13 @@
     return _plantsPromise;
   };
 
-  // Local botanical illustrations, reserved for the exact species they depict.
-  // Everything else gets a generated Mondrian tile (plantTile) so the grid
-  // never repeats the same artwork.
-  const IMG_MAP = [
-    ['monstera deliciosa', '/assets/plants/monstera.png'],
-    ['philodendron hederaceum', '/assets/plants/philodendron.png'],
-    ['heartleaf', '/assets/plants/philodendron.png'],
-    ['anthurium andraeanum', '/assets/plants/anthurium.png'],
-    ['laurentii', '/assets/plants/snake_plant.png'],
-    ['golden pothos', '/assets/plants/pothos.png'],
-    ['alocasia polly', '/assets/plants/alocasia.png'],
-  ];
-
-  window.plantImage = function (plant) {
-    const n = (plant.common_name || '').toLowerCase();
-    for (const [key, src] of IMG_MAP) {
-      if (n.includes(key)) return src;
-    }
-    return null;
-  };
-
-  // Generated De Stijl tile: a small seeded Mondrian composition so plants
-  // without a real illustration each get unique, on-brand artwork.
-  window.plantTile = function (plant, emojiSize) {
-    const id = Math.abs(plant.id || 0);
-    const L = [
-      { c: '2fr 1fr', r: '1fr 2fr', emoji: 0 },
-      { c: '1fr 2fr', r: '2fr 1fr', emoji: 3 },
-      { c: '3fr 2fr', r: '2fr 1fr', emoji: 1 },
-      { c: '1fr 1fr', r: '2fr 1fr', emoji: 2 },
-      { c: '2fr 3fr', r: '3fr 2fr', emoji: 0 },
-      { c: '3fr 1fr', r: '1fr 1fr', emoji: 0 },
-    ][id % 6];
-    const PERMS = [
-      ['#DD0100', '#FAC901', '#0E4DA4'],
-      ['#0E4DA4', '#ffffff', '#DD0100'],
-      ['#FAC901', '#0E4DA4', '#ffffff'],
-      ['#ffffff', '#DD0100', '#FAC901'],
-      ['#FAC901', '#ffffff', '#0E4DA4'],
-      ['#0E4DA4', '#DD0100', '#ffffff'],
-      ['#DD0100', '#ffffff', '#FAC901'],
-    ];
-    const colors = PERMS[id % 7];
-    let ci = 0;
-    const cells = [0, 1, 2, 3].map(i =>
-      i === L.emoji
-        ? `<div style="background:#fff;display:grid;place-items:center;font-size:${emojiSize || '2rem'}">${plantEmoji(plant)}</div>`
-        : `<div style="background:${colors[ci++]}"></div>`
-    ).join('');
-    return `<div aria-hidden="true" style="width:100%;height:100%;display:grid;grid-template-columns:${L.c};grid-template-rows:${L.r};gap:3px;background:#111">${cells}</div>`;
-  };
-
-  window.plantEmoji = function (plant) {
-    const n = (plant.common_name || '').toLowerCase();
-    if (/cact|opuntia|euphorb/.test(n)) return '🌵';
-    if (/fern|nephrolepis|adiantum/.test(n)) return '🪶';
-    if (/palm|areca|chamaedor/.test(n)) return '🌴';
-    if (/orchid|rose|lily|hibiscus|chrysanth|bougain|petun/.test(n)) return '🌸';
-    if (/succulent|echeveria|haworth|crassula|aloe|sedum/.test(n)) return '🌿';
-    if (/tree|ficus|bonsai/.test(n)) return '🌳';
-    return '🪴';
-  };
+  // Plant artwork + care-copy helpers live in plant-info.js (shared with the
+  // static-page build script). On pages that include it they're available as
+  // window.plantImage / window.plantTile / window.plantEmoji / window.PlantInfo.
 
   document.addEventListener('DOMContentLoaded', () => {
     injectChrome();
-    setupReveal();
+    wireAppStoreLinks();
+    loadAnalytics();
   });
 })();

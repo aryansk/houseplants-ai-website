@@ -13,28 +13,9 @@
   <meta property="og:description" content="An intelligent iOS plant care companion." />
   <meta property="og:image" content="https://houseplants-ai-website-1.vercel.app/assets/banner.png" />
   <link rel="icon" href="./assets/app-icon.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: {
-      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'], display: ['"Archivo Black"', 'sans-serif'] },
-      colors: {
-        leaf: { 50:'#ffffff',100:'#FFF6D8',200:'#FAC901',300:'#DD0100',400:'#0E4DA4',500:'#111111',600:'#0E4DA4',700:'#111111',800:'#F1EEE6',900:'#111111' },
-        cream: '#FAF7F0',
-        brand: {
-          green: '#111111',
-          blue: '#0E4DA4',
-          red: '#DD0100',
-          yellow: '#FAC901',
-          orange: '#DD0100',
-          pink: '#FAC901',
-          dark: '#111111'
-        }
-      }
-    }}}
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,100 +35,19 @@
     }
   }
   </script>
-  <style>
-    html{scroll-behavior:smooth}
-    body{background:#FAF7F0;color:#111111}
-    /* Mondrian: rectangles only */
-    *{border-radius:0 !important}
-    .grain{background-image:none}
-    .ring-glow{box-shadow:8px 8px 0 #111}
-    .marquee{display:flex;gap:3rem;animation:marq 40s linear infinite}
-    @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .float-y{animation:floatY 6s ease-in-out infinite}
-    .float-y.delay{animation-delay:-3s}
-    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    .reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.7,.2,1)}
-    .reveal.in{opacity:1;transform:none}
-    #scene{position:absolute;inset:0;pointer-events:none}
-    .phone{filter:drop-shadow(12px 12px 0 rgba(17,17,17,.9))}
-    .blob{display:none}
-    .chip{backdrop-filter:none;background:#ffffff;border:2px solid #111}
-    .glass{background:#ffffff;border:2px solid #111;backdrop-filter:none;box-shadow:6px 6px 0 #111}
-    .tilt{transition:transform .2s ease, box-shadow .2s ease;background:#ffffff !important;border:2px solid #111 !important;box-shadow:6px 6px 0 #111 !important}
-    .tilt:hover{transform:translate(-3px,-3px);box-shadow:10px 10px 0 #DD0100 !important}
-    .plant-card{border:2px solid #111;box-shadow:6px 6px 0 #111}
-    .plant-card img{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-    .plant-card:hover img{transform:scale(1.08)}
-    .gradient-text{color:#DD0100}
-    .hl{background:#FAC901;color:#111;padding:0 .15em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-    .mondrian-strip{display:flex;height:12px;border:2px solid #111;border-top:none;background:#fff}
-    .mondrian-strip div{border-right:2px solid #111}
-    .mondrian-strip div:last-child{border-right:none}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .marquee,.float-y{animation:none}
-      .reveal{opacity:1;transform:none;transition:none}
-      .tilt,.plant-card img{transition:none}
-    }
-  </style>
+  <link rel="stylesheet" href="./assets/tailwind.css" />
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body class="text-leaf-900 bg-cream antialiased font-sans selection:bg-brand-blue selection:text-white">
+<a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- Nav -->
-  <header class="fixed top-0 inset-x-0 z-40">
-    <div class="max-w-6xl mx-auto mt-4 px-4">
-      <div class="glass rounded-full px-5 py-3 flex items-center justify-between">
-        <a href="#" class="flex items-center gap-2 font-bold text-leaf-900">
-          <img src="./assets/app-icon.png" class="w-7 h-7 rounded-md" alt="" />
-          <span>HousePlants</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-leaf-900/70">
-          <a href="./catalog.html" class="hover:text-brand-blue transition">Catalog</a>
-          <a href="./tools.html" class="hover:text-brand-blue transition">Tools</a>
-          <a href="./doctor.html" class="hover:text-brand-blue transition">Doctor</a>
-          <a href="./toxicity.html" class="hover:text-brand-blue transition">Toxicity</a>
-          <a href="./story.html" class="hover:text-brand-blue transition">Our Story</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="bg-brand-red border-2 border-black shadow-[4px_4px_0_#111] text-white hover:bg-brand-blue transition px-4 py-2 text-sm font-bold uppercase tracking-wide">Download</a>
-          <button id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" class="md:hidden w-9 h-9 grid place-items-center rounded-full border border-leaf-900/15 text-leaf-900">☰</button>
-        </div>
-      </div>
-      <div class="mondrian-strip mx-2" aria-hidden="true">
-        <div style="flex:3;background:#DD0100"></div>
-        <div style="flex:4;background:#fff"></div>
-        <div style="flex:2;background:#0E4DA4"></div>
-        <div style="flex:2;background:#FAC901"></div>
-        <div style="flex:1;background:#111"></div>
-      </div>
-      <div id="mobileMenu" style="display:none" class="md:hidden glass rounded-2xl mt-2 p-4 flex-col gap-1 text-sm font-medium text-leaf-900/80">
-        <a href="./catalog.html" class="py-2 px-3 rounded-lg hover:bg-brand-blue/5 hover:text-brand-blue transition">Catalog</a>
-        <a href="./tools.html" class="py-2 px-3 rounded-lg hover:bg-brand-blue/5 hover:text-brand-blue transition">Tools</a>
-        <a href="./doctor.html" class="py-2 px-3 rounded-lg hover:bg-brand-blue/5 hover:text-brand-blue transition">Doctor</a>
-        <a href="./toxicity.html" class="py-2 px-3 rounded-lg hover:bg-brand-blue/5 hover:text-brand-blue transition">Toxicity</a>
-        <a href="./story.html" class="py-2 px-3 rounded-lg hover:bg-brand-blue/5 hover:text-brand-blue transition">Our Story</a>
-      </div>
-    </div>
-  </header>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
-      t.addEventListener('click', () => {
-        const open = m.style.display !== 'flex';
-        m.style.display = open ? 'flex' : 'none';
-        t.textContent = open ? '✕' : '☰';
-        t.setAttribute('aria-expanded', open);
-        t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      });
-    });
-  </script>
+  <div id="nav"></div>
 
-  <!-- HERO with 3D canvas -->
+  <!-- Hero -->
   <section class="relative min-h-screen overflow-hidden">
     <div class="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full bg-brand-blue blob"></div>
     <div class="absolute top-40 -right-40 w-[600px] h-[600px] rounded-full bg-brand-yellow blob"></div>
     <div class="absolute inset-0 grain opacity-50"></div>
-    <canvas id="scene"></canvas>
 
     <div class="relative max-w-6xl mx-auto px-6 pt-40 pb-32 grid md:grid-cols-2 gap-10 items-center">
       <div class="reveal">
@@ -155,14 +55,14 @@
           <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span> Available now on iOS 17+
         </span>
         <h1 class="mt-6 font-display font-black tracking-tight text-5xl md:text-7xl leading-[1.02] text-brand-dark">
-          Your indoor jungle, <span class="hl italic">engineered.</span>
+          <span class="hero-title-stack">Your<br/>indoor<br/>jungle,</span> <span class="hl italic">engineered.</span>
         </h1>
         <p class="mt-6 text-lg text-leaf-900/70 max-w-xl">
           HousePlants pairs a 727-plant database (including 178+ illustrated species) with calibrated horticultural tools — AR light meter, symptom-based plant doctor, NPK dosing, lunar planting calendar, and more.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="bg-brand-red border-2 border-black shadow-[4px_4px_0_#111] text-white hover:bg-brand-blue transition px-6 py-3 font-bold uppercase tracking-wide">Get the app →</a>
-          <a href="./catalog.html" class="border-2 border-black bg-white shadow-[4px_4px_0_#111] hover:bg-brand-yellow transition px-6 py-3 font-bold uppercase tracking-wide">Browse 727 plants</a>
+          <a data-app-store href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="bg-brand-red border-2 border-black shadow-[4px_4px_0_#111] text-white hover:bg-brand-blue transition px-6 py-3 font-bold uppercase tracking-wide">Get the app →</a>
+          <a href="/catalog" class="border-2 border-black bg-white shadow-[4px_4px_0_#111] hover:bg-brand-yellow transition px-6 py-3 font-bold uppercase tracking-wide">Browse 727 plants</a>
         </div>
         <div class="mt-10 grid grid-cols-3 gap-6 max-w-md">
           <div><p class="font-display text-3xl font-black text-brand-dark">727</p><p class="text-xs uppercase tracking-widest text-leaf-900/60 mt-1">Plants</p></div>
@@ -176,13 +76,13 @@
         <div class="absolute -inset-12 bg-gradient-to-br from-brand-blue/20 via-brand-yellow/10 to-transparent blur-3xl rounded-full"></div>
 
         <div class="relative w-[300px] rotate-3 tilt">
-          <img src="./assets/screenshots/discover.png" class="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]" alt="HousePlants App Discover" />
+          <img src="./assets/screenshots/discover.png" width="299" height="652" fetchpriority="high" decoding="async" class="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)]" alt="HousePlants App Discover" />
         </div>
 
         <!-- Floating mini phone -->
         <div class="phone absolute -left-10 bottom-10 w-[170px] h-[340px] rounded-[2rem] bg-brand-dark p-2 -rotate-12 float-y hidden md:block">
           <div class="w-full h-full rounded-[1.7rem] bg-brand-dark overflow-hidden relative">
-            <div class="absolute inset-0 bg-[url('./assets/plants/anthurium.png')] bg-cover bg-center opacity-70"></div>
+            <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image:url('/assets/plants/anthurium.png')"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent"></div>
             <div class="relative p-3 h-full flex flex-col justify-end">
               <p class="text-[9px] uppercase tracking-widest text-brand-yellow font-bold">AR Sun Seeker</p>
@@ -248,17 +148,17 @@
       <div class="mt-16 grid md:grid-cols-3 gap-8 reveal items-start">
         <!-- Screen 1: Profile -->
         <div class="tilt">
-          <img src="./assets/screenshots/profile.png" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Profile Screen" />
+          <img src="./assets/screenshots/profile.png" width="299" height="652" loading="lazy" decoding="async" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Profile Screen" />
         </div>
 
         <!-- Screen 2: Discover -->
         <div class="tilt md:translate-y-12">
-          <img src="./assets/screenshots/discover.png" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Discover Screen" />
+          <img src="./assets/screenshots/discover.png" width="299" height="652" loading="lazy" decoding="async" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Discover Screen" />
         </div>
 
         <!-- Screen 3: Tools -->
         <div class="tilt">
-          <img src="./assets/screenshots/tools.png" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Tools Screen" />
+          <img src="./assets/screenshots/tools.png" width="299" height="652" loading="lazy" decoding="async" class="w-full h-auto drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)]" alt="Tools Screen" />
         </div>
       </div>
     </div>
@@ -275,7 +175,7 @@
 
       <div class="mt-16 grid md:grid-cols-12 gap-5 reveal">
         <div class="md:col-span-7 rounded-3xl bg-brand-dark text-white p-8 relative overflow-hidden border-2 border-black shadow-[6px_6px_0_#111]">
-          <div class="absolute -right-10 -bottom-10 w-72 h-72 opacity-95"><img src="./assets/plants/philodendron.png" class="w-full h-full object-contain"/></div>
+          <div class="absolute -right-10 -bottom-10 w-72 h-72 opacity-95"><img src="./assets/plants/philodendron.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-contain" alt="" /></div>
           <p class="text-brand-pink font-bold uppercase tracking-widest text-xs">Smart Watering</p>
           <h3 class="font-display text-3xl font-black mt-2 max-w-xs">Schedules that learn your home.</h3>
           <p class="mt-3 text-[#f7f3ea]/70 max-w-sm">Species-aware schedules adapt to pot size, season, and climate. Bulk-water with one tap.</p>
@@ -284,17 +184,17 @@
           <p class="text-brand-orange font-bold uppercase tracking-widest text-xs">Streaks</p>
           <h3 class="font-display text-3xl font-black mt-2 text-brand-dark">14 days strong.</h3>
           <div class="mt-6 flex items-center gap-3">
-            <div class="w-20 h-20 rounded-full bg-white border-2 border-black grid place-items-center text-4xl">🔥</div>
+            <div class="w-20 h-20 rounded-full bg-white border-2 border-black grid place-items-center" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></svg></div>
             <div><p class="font-display text-5xl font-black leading-none text-brand-dark">14</p><p class="text-sm text-brand-orange">day streak</p></div>
           </div>
         </div>
         <div class="md:col-span-5 rounded-3xl bg-brand-blue text-white p-8 relative overflow-hidden border-2 border-black shadow-[6px_6px_0_#111]">
-          <div class="absolute -right-6 -bottom-6 w-44 h-44"><img src="./assets/avatars/monstera.png" class="w-full h-full object-contain"/></div>
+          <div class="absolute -right-6 -bottom-6 w-44 h-44"><img src="./assets/avatars/monstera.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-contain" alt="" /></div>
           <p class="text-brand-pink font-bold uppercase tracking-widest text-xs">Avatars</p>
           <h3 class="font-display text-3xl font-black mt-2 text-white">Pick your plant persona.</h3>
         </div>
         <div class="md:col-span-7 rounded-3xl bg-brand-blue text-white p-8 relative overflow-hidden border-2 border-black shadow-[6px_6px_0_#111]">
-          <div class="absolute right-0 bottom-0 w-64 h-64 opacity-90"><img src="./assets/plants/anthurium.png" class="w-full h-full object-contain"/></div>
+          <div class="absolute right-0 bottom-0 w-64 h-64 opacity-90"><img src="./assets/plants/anthurium.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-contain" alt="" /></div>
           <p class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Plant Doctor</p>
           <h3 class="font-display text-3xl font-black mt-2 max-w-xs">Diagnose what your plant can't say.</h3>
           <p class="mt-3 text-white/80 max-w-sm">Symptom wizard maps yellow leaves, brown tips, and pests to probabilistic causes — then walks you through the fix.</p>
@@ -306,7 +206,6 @@
   <!-- 3D Tool Showcase -->
   <section id="tools" class="relative py-32 bg-brand-dark overflow-hidden text-white">
     <div class="absolute inset-0 grain opacity-40"></div>
-    <canvas id="scene2" class="absolute inset-0"></canvas>
     <div class="relative max-w-6xl mx-auto px-6">
       <div class="reveal max-w-2xl">
         <p class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Pro toolkit</p>
@@ -314,18 +213,18 @@
         <p class="mt-5 text-white/80">Every calculator uses real horticultural formulas — from foot-candle readings to NPK dosing.</p>
       </div>
       <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🌡️</span><h3 class="font-bold">Climate Matcher</h3></div><p class="text-sm text-brand-dark/70 mt-2">Plants suited to your city, via GPS.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">☀️</span><h3 class="font-bold">Sun Seeker AR</h3></div><p class="text-sm text-brand-dark/70 mt-2">Foot-candle readings with AR overlay.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">💧</span><h3 class="font-bold">Water Calculator</h3></div><p class="text-sm text-brand-dark/70 mt-2">Adjusted for pot size and season.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🩺</span><h3 class="font-bold">Plant Doctor</h3></div><p class="text-sm text-brand-dark/70 mt-2">Pest ID and treatment via symptoms.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🧪</span><h3 class="font-bold">Fertilizer Calc</h3></div><p class="text-sm text-brand-dark/70 mt-2">Liquid, granular, slow-release dosing.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🪨</span><h3 class="font-bold">Soil Mix Builder</h3></div><p class="text-sm text-brand-dark/70 mt-2">Recipes with shopping list export.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🐾</span><h3 class="font-bold">Toxicity Checker</h3></div><p class="text-sm text-brand-dark/70 mt-2">Pet & child safety lookups.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🌱</span><h3 class="font-bold">Propagation Station</h3></div><p class="text-sm text-brand-dark/70 mt-2">Step-by-step propagation guides.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">📅</span><h3 class="font-bold">Seasonal Calendar</h3></div><p class="text-sm text-brand-dark/70 mt-2">Month-by-month adjustments.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🌙</span><h3 class="font-bold">Moon Gardening</h3></div><p class="text-sm text-brand-dark/70 mt-2">Lunar planting calendar.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🗺️</span><h3 class="font-bold">Origin Explorer</h3></div><p class="text-sm text-brand-dark/70 mt-2">Native habitat map per species.</p></div>
-        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="text-3xl">🪴</span><h3 class="font-bold">Pot Size Calc</h3></div><p class="text-sm text-brand-dark/70 mt-2">Growth-based repotting picks.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">01</span><h3 class="font-bold">Climate Matcher</h3></div><p class="text-sm text-brand-dark/70 mt-2">Plants suited to your city, via GPS.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">02</span><h3 class="font-bold">Sun Seeker AR</h3></div><p class="text-sm text-brand-dark/70 mt-2">Foot-candle readings with AR overlay.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">03</span><h3 class="font-bold">Water Calculator</h3></div><p class="text-sm text-brand-dark/70 mt-2">Adjusted for pot size and season.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">04</span><h3 class="font-bold">Plant Doctor</h3></div><p class="text-sm text-brand-dark/70 mt-2">Pest ID and treatment via symptoms.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">05</span><h3 class="font-bold">Fertilizer Calc</h3></div><p class="text-sm text-brand-dark/70 mt-2">Liquid, granular, slow-release dosing.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">06</span><h3 class="font-bold">Soil Mix Builder</h3></div><p class="text-sm text-brand-dark/70 mt-2">Recipes with shopping list export.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">07</span><h3 class="font-bold">Toxicity Checker</h3></div><p class="text-sm text-brand-dark/70 mt-2">Pet & child safety lookups.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">08</span><h3 class="font-bold">Propagation Station</h3></div><p class="text-sm text-brand-dark/70 mt-2">Step-by-step propagation guides.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">09</span><h3 class="font-bold">Seasonal Calendar</h3></div><p class="text-sm text-brand-dark/70 mt-2">Month-by-month adjustments.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">10</span><h3 class="font-bold">Moon Gardening</h3></div><p class="text-sm text-brand-dark/70 mt-2">Lunar planting calendar.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">11</span><h3 class="font-bold">Origin Explorer</h3></div><p class="text-sm text-brand-dark/70 mt-2">Native habitat map per species.</p></div>
+        <div class="glass rounded-2xl p-5 tilt text-brand-dark"><div class="flex items-center gap-3"><span class="tool-index">12</span><h3 class="font-bold">Pot Size Calc</h3></div><p class="text-sm text-brand-dark/70 mt-2">Growth-based repotting picks.</p></div>
       </div>
     </div>
   </section>
@@ -344,10 +243,10 @@
         </ul>
       </div>
       <div class="grid grid-cols-2 gap-4 reveal">
-        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-green/10 -rotate-2"><img src="./assets/plants/monstera.png" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Monstera</p><p class="text-xs text-white/70 italic">M. deliciosa</p></div></div>
-        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-blue/10 rotate-2 mt-8"><img src="./assets/plants/anthurium.png" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Anthurium</p><p class="text-xs text-white/70 italic">A. andraeanum</p></div></div>
-        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-orange/10 rotate-2"><img src="./assets/plants/philodendron.png" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Philodendron</p><p class="text-xs text-white/70 italic">P. hederaceum</p></div></div>
-        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-pink/10 -rotate-2 -mt-4"><img src="./assets/plants/snake_plant.png" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Snake Plant</p><p class="text-xs text-white/70 italic">D. trifasciata</p></div></div>
+        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-green/10 -rotate-2"><img src="./assets/plants/monstera.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Monstera</p><p class="text-xs text-white/70 italic">M. deliciosa</p></div></div>
+        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-blue/10 rotate-2 mt-8"><img src="./assets/plants/anthurium.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Anthurium</p><p class="text-xs text-white/70 italic">A. andraeanum</p></div></div>
+        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-orange/10 rotate-2"><img src="./assets/plants/philodendron.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Philodendron</p><p class="text-xs text-white/70 italic">P. hederaceum</p></div></div>
+        <div class="plant-card relative aspect-[3/4] rounded-3xl overflow-hidden bg-brand-pink/10 -rotate-2 -mt-4"><img src="./assets/plants/snake_plant.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-full object-cover" alt=""/><div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-dark/90 to-transparent p-4"><p class="font-display font-black text-white text-xl">Snake Plant</p><p class="text-xs text-white/70 italic">D. trifasciata</p></div></div>
       </div>
     </div>
   </section>
@@ -359,22 +258,21 @@
       <h2 class="mt-3 font-display text-5xl font-black text-brand-dark">Choose your plant persona.</h2>
       <p class="mt-4 text-brand-dark/70 max-w-xl mx-auto">Set the vibe of your HousePlants profile with a curated avatar.</p>
       <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/monstera.png" class="w-full aspect-square object-contain"/><p class="mt-3 font-bold">Monstera</p></div>
-        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/fern.png" class="w-full aspect-square object-contain"/><p class="mt-3 font-bold">Fern</p></div>
-        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/cactus.png" class="w-full aspect-square object-contain"/><p class="mt-3 font-bold">Cactus</p></div>
-        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/succulent.png" class="w-full aspect-square object-contain"/><p class="mt-3 font-bold">Succulent</p></div>
+        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/monstera.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full aspect-square object-contain" alt="Monstera avatar"/><p class="mt-3 font-bold">Monstera</p></div>
+        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/fern.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full aspect-square object-contain" alt="Fern avatar"/><p class="mt-3 font-bold">Fern</p></div>
+        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/cactus.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full aspect-square object-contain" alt="Cactus avatar"/><p class="mt-3 font-bold">Cactus</p></div>
+        <div class="glass rounded-3xl p-6 tilt"><img src="./assets/avatars/succulent.png" width="1024" height="1024" loading="lazy" decoding="async" class="w-full aspect-square object-contain" alt="Succulent avatar"/><p class="mt-3 font-bold">Succulent</p></div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section id="download" class="relative py-32 overflow-hidden bg-brand-dark text-white">
-    <canvas id="scene3" class="absolute inset-0"></canvas>
     <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
       <h2 class="font-display text-6xl md:text-7xl font-black tracking-tight">Your jungle<br/><span class="hl italic">awaits.</span></h2>
       <p class="mt-6 text-lg text-white/70">Built natively for iOS 17+. Offline-first. No account, no tracking.</p>
       <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="rounded-full bg-white hover:bg-[#f7f3ea] text-brand-dark px-8 py-4 font-bold shadow-2xl flex items-center gap-3">
+        <a data-app-store href="https://apps.apple.com/us/app/houseplants-ai-indoor-jungle/id1234567890" class="rounded-full bg-white hover:bg-[#f7f3ea] text-brand-dark px-8 py-4 font-bold shadow-2xl flex items-center gap-3">
           <svg class="w-6 h-6" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
           <span class="text-left leading-tight"><span class="block text-xs font-normal opacity-60">Download on the</span><span class="block text-base">App Store</span></span>
         </a>
@@ -383,141 +281,7 @@
     </div>
   </section>
 
-  <footer class="border-t border-white/10 py-10 bg-brand-dark">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/50">
-      <p>© <span id="y"></span> HousePlants. An indie iOS app by Aryan Singh.</p>
-      <div class="flex gap-6 text-white/50">
-        <a href="./story.html" class="hover:text-white transition">Our Story</a>
-        <a href="./privacy.html" class="hover:text-white transition">Privacy</a>
-        <a href="./terms.html" class="hover:text-white transition">Terms</a>
-        <a href="mailto:hello@houseplants.ai" class="hover:text-white transition">Contact</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
-
-  <!-- Reveal-on-scroll -->
-  <script>
-    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.15});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  </script>
-
-  <!-- THREE.js 3D scenes -->
-  <script type="importmap">
-    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
-  </script>
-  <script type="module">
-    import * as THREE from 'three';
-
-    // Flat De Stijl panels instead of organic leaves
-    function makeBlockGeometry() {
-      return new THREE.BoxGeometry(1.3, 1.9, 0.12);
-    }
-
-    function buildScene(canvasId, opts={}) {
-      const canvas = document.getElementById(canvasId);
-      if (!canvas) return;
-      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
-      camera.position.set(0, 0, 9);
-
-      const ambient = new THREE.AmbientLight(0xffffff, 0.9);
-      const dir = new THREE.DirectionalLight(0xffffff, 1.4);
-      dir.position.set(4, 6, 5);
-      const dir2 = new THREE.DirectionalLight(0xffffff, 0.5);
-      dir2.position.set(-5, -3, 4);
-      scene.add(ambient, dir, dir2);
-
-      const group = new THREE.Group();
-      scene.add(group);
-
-      const blockGeo = makeBlockGeometry();
-      const palette = [0xdd0100, 0x0e4da4, 0xfac901, 0xf5f2ea, 0x111111];
-      const count = opts.count ?? 14;
-      const objects = [];
-      for (let i = 0; i < count; i++) {
-        const color = palette[i % palette.length];
-        const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.6, metalness: 0.05 });
-        const mesh = new THREE.Mesh(blockGeo, mat);
-        const r = 3 + Math.random() * 3;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos(2*Math.random()-1);
-        mesh.position.set(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta)*0.7, r*Math.cos(phi)*0.5);
-        mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-        const s = 0.6 + Math.random()*0.9;
-        mesh.scale.set(s, s, s);
-        mesh.userData = { speed: 0.2 + Math.random()*0.5, axis: new THREE.Vector3(Math.random()-.5, Math.random()-.5, Math.random()-.5).normalize(), phase: Math.random()*Math.PI*2 };
-        group.add(mesh);
-        objects.push(mesh);
-      }
-
-      // a central spinning cube — primary red with a black wire frame
-      if (opts.orb !== false) {
-        const orb = new THREE.Mesh(
-          new THREE.BoxGeometry(1.8, 1.8, 1.8),
-          new THREE.MeshStandardMaterial({ color: 0xdd0100, roughness: 0.55, metalness: 0.05 })
-        );
-        const edges = new THREE.LineSegments(
-          new THREE.EdgesGeometry(orb.geometry),
-          new THREE.LineBasicMaterial({ color: 0x111111 })
-        );
-        orb.add(edges);
-        scene.add(orb);
-        objects.push({ orbit: orb });
-      }
-
-      function resize() {
-        const w = canvas.clientWidth, h = canvas.clientHeight;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-      }
-      const ro = new ResizeObserver(resize);
-      ro.observe(canvas);
-      resize();
-
-      let mx = 0, my = 0;
-      window.addEventListener('pointermove', (e) => {
-        mx = (e.clientX / window.innerWidth - 0.5) * 2;
-        my = (e.clientY / window.innerHeight - 0.5) * 2;
-      });
-
-      // only render while the canvas is on screen and the tab is visible
-      let visible = true;
-      const vio = new IntersectionObserver(es => { visible = es[0].isIntersecting; });
-      vio.observe(canvas);
-
-      const clock = new THREE.Clock();
-      function tick() {
-        requestAnimationFrame(tick);
-        if (!visible || document.hidden) return;
-        const t = clock.getElapsedTime();
-        group.rotation.y = t * 0.05 + mx * 0.4;
-        group.rotation.x = my * 0.2;
-        for (const m of objects) {
-          if (m.userData?.axis) {
-            m.rotateOnAxis(m.userData.axis, 0.005 * m.userData.speed);
-            m.position.y += Math.sin(t * m.userData.speed + m.userData.phase) * 0.002;
-          }
-          if (m.orbit) {
-            m.orbit.rotation.x = t * 0.2;
-            m.orbit.rotation.y = t * 0.15;
-          }
-        }
-        renderer.render(scene, camera);
-      }
-      tick();
-    }
-
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      buildScene('scene',  { count: 18, orb: true });
-      buildScene('scene2', { count: 10, orb: false });
-      buildScene('scene3', { count: 14, orb: true });
-    }
-  </script>
+  <div id="footer"></div>
+  <script src="./assets/site.js"></script>
 </body>
 </html>
